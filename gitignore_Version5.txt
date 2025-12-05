@@ -1,0 +1,18 @@
+# Ignore OS files
+.DS_Store
+Thumbs.db
+
+# Editor swap/backup/log
+*.log
+*.swp
+*.tmp
+
+# Node, Python, etc (in case you add scripts later)
+node_modules/
+.env
+__pycache__/
+*.pyc
+
+# Output/build/artifacts
+dist/
+build/
