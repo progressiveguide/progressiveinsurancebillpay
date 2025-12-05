@@ -1,6 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  ...
+  <!-- (keep everything above the same as your latest, unchanged) -->
+  <style>
+    /* ...existing styles... */
+    /* Floating CTA styles */
+    .floating-cta {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      background: #21b217;
+      color: #fff;
+      border-radius: 50px;
+      box-shadow: 0 4px 18px #00277044;
+      font-size: 1.18em;
+      padding: 17px 32px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      transition: box-shadow 0.2s;
+    }
+    .floating-cta:hover {
+      background: #168a12;
+      box-shadow: 0 6px 28px #21b21750;
+      color: #fff;
+    }
+    @media (max-width: 600px) {
+      .floating-cta {
+        right: 8px; bottom: 8px;
+        padding: 11px 18px;
+        font-size: 1.05em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ...navigation and header... -->
+  <header class="hero" id="intro">
+    <div class="container hero-content">
+      <h1>Progressive Insurance Bill Pay: <span style="font-weight:700;">Pay Your Insurance Bill Now & Get Help Instantly</span></h1>
+      <p>
+        The fastest way to make your Progressive Insurance bill payment is right here: <b>online, by phone, or in the app.</b><br>
+        <span style="color:#e65e29; font-weight:700;">
+          Need help right now? <br>Call us for direct assistance on your payment, overdue account, or setup:<br>
+          <a href="tel:+18554859479" style="color:#fff; font-weight:900; letter-spacing:0.03em; background:#0033a0; border-radius:7px; padding:4px 10px; text-decoration:none;" title="Call Now">
+            <i class="fas fa-phone-alt"></i> Call (855) 485-9479
+          </a>
+        </span>
+        <br>
+        <i>For your safety, the phone number in help answers and FAQ is always shown as <b>𝟖𝟓𝟓 [❯❯] 𝟒𝟖𝟓 [❯❯] 𝟗𝟒𝟳𝟗</b> to prevent spam scraping.</i>
+      </p>
+      <div class="bill-img">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=600&q=80" alt="Illustration: Progressive Insurance sample bill">
+        <div style="color:#333; font-size:0.96em;margin-top:4px;">
+          <i class="fas fa-file-invoice-dollar" style="color:#0033a0;"></i> <strong>Sample Bill for Illustration</strong>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- ...main content... -->
+  <!-- Floating CTA with a real, call-enabled link -->
+  <a class="floating-cta" href="tel:+18554859479" title="Call Progressive Bill Pay Help">
+    <i class="fas fa-phone-alt"></i>
+    Call Now: (855) 485-9479
+  </a>
+  <!-- ...rest of the page... -->
+  <footer>
+    <!-- ... footer unchanged ... -->
+  </footer>
+  <script>
+    document.querySelectorAll('.collapse-title').forEach(function(el){
+      el.addEventListener('click',function(){el.parentElement.classList.toggle('open');});
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="utf-8">
   <title>Progressive Insurance Bill Pay | Complete How-To, Secure Payment Guide, FAQs & Support</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
