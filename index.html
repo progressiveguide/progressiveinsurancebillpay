@@ -1,81 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  ...
-  <!-- (keep everything above the same as your latest, unchanged) -->
-  <style>
-    /* ...existing styles... */
-    /* Floating CTA styles */
-    .floating-cta {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 9999;
-      background: #21b217;
-      color: #fff;
-      border-radius: 50px;
-      box-shadow: 0 4px 18px #00277044;
-      font-size: 1.18em;
-      padding: 17px 32px;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 13px;
-      transition: box-shadow 0.2s;
-    }
-    .floating-cta:hover {
-      background: #168a12;
-      box-shadow: 0 6px 28px #21b21750;
-      color: #fff;
-    }
-    @media (max-width: 600px) {
-      .floating-cta {
-        right: 8px; bottom: 8px;
-        padding: 11px 18px;
-        font-size: 1.05em;
-      }
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Progressive Insurance Bill Pay | Fast & Secure Payment Guide</title>
+
+<!-- Font Awesome (No Broken Icons) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
+  body{background:#f4f7fb;color:#333;line-height:1.7;}
+
+  /* HEADER */
+  .hero{
+    background: linear-gradient(135deg,#0033a0,#0058d4);
+    color:#fff;padding:70px 20px;
+    text-align:center;
+  }
+  .hero h1{font-size:2.3em;margin-bottom:20px;font-weight:800;}
+  .hero p{max-width:850px;margin:0 auto;font-size:1.1em;font-weight:500;}
+
+  /* CONTENT SECTIONS */
+  section{padding:60px 20px;max-width:1100px;margin:auto;}
+  .section-box{
+    background:#fff;border-radius:12px;padding:35px;
+    box-shadow:0 3px 14px rgba(0,0,0,0.07);margin-bottom:35px;
+  }
+  h2{font-size:1.6em;margin-bottom:15px;color:#0033a0;font-weight:800;}
+  h3{font-size:1.25em;margin:12px 0;color:#0033a0;}
+
+  /* ICON LIST */
+  .icon-line{margin:10px 0;display:flex;gap:12px;font-size:1.05em;}
+  .icon-line i{color:#0058d4;font-size:1.2em;margin-top:2px;}
+
+  /* FLOATING CTA */
+  .floating-cta{
+    position:fixed;bottom:22px;right:22px;z-index:9999;
+    background:#21b217;color:#fff;border-radius:50px;
+    box-shadow:0 4px 18px #00277044;
+    font-size:1.15em;padding:16px 30px;font-weight:700;
+    display:flex;align-items:center;gap:12px;text-decoration:none;
+  }
+  .floating-cta:hover{background:#168a12;color:#fff;}
+
+  @media(max-width:600px){
+    .floating-cta{bottom:10px;right:10px;padding:12px 20px;font-size:1.05em;}
+  }
+
+  footer{
+    padding:30px 20px;text-align:center;font-size:0.9em;color:#777;
+  }
+</style>
 </head>
+
 <body>
-  <!-- ...navigation and header... -->
-  <header class="hero" id="intro">
-    <div class="container hero-content">
-      <h1>Progressive Insurance Bill Pay: <span style="font-weight:700;">Pay Your Insurance Bill Now & Get Help Instantly</span></h1>
-      <p>
-        The fastest way to make your Progressive Insurance bill payment is right here: <b>online, by phone, or in the app.</b><br>
-        <span style="color:#e65e29; font-weight:700;">
-          Need help right now? <br>Call us for direct assistance on your payment, overdue account, or setup:<br>
-          <a href="tel:+18554859479" style="color:#fff; font-weight:900; letter-spacing:0.03em; background:#0033a0; border-radius:7px; padding:4px 10px; text-decoration:none;" title="Call Now">
-            <i class="fas fa-phone-alt"></i> Call (855) 485-9479
-          </a>
-        </span>
-        <br>
-        <i>For your safety, the phone number in help answers and FAQ is always shown as <b>𝟖𝟓𝟓 [❯❯] 𝟒𝟖𝟓 [❯❯] 𝟗𝟒𝟳𝟗</b> to prevent spam scraping.</i>
-      </p>
-      <div class="bill-img">
-        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?fit=crop&w=600&q=80" alt="Illustration: Progressive Insurance sample bill">
-        <div style="color:#333; font-size:0.96em;margin-top:4px;">
-          <i class="fas fa-file-invoice-dollar" style="color:#0033a0;"></i> <strong>Sample Bill for Illustration</strong>
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- ...main content... -->
-  <!-- Floating CTA with a real, call-enabled link -->
-  <a class="floating-cta" href="tel:+18554859479" title="Call Progressive Bill Pay Help">
-    <i class="fas fa-phone-alt"></i>
-    Call Now: (855) 485-9479
-  </a>
-  <!-- ...rest of the page... -->
-  <footer>
-    <!-- ... footer unchanged ... -->
-  </footer>
-  <script>
-    document.querySelectorAll('.collapse-title').forEach(function(el){
-      el.addEventListener('click',function(){el.parentElement.classList.toggle('open');});
-    });
-  </script>
+
+<header class="hero">
+  <h1><i class="fa-solid fa-file-invoice-dollar"></i> Progressive Insurance Bill Pay</h1>
+  <p>
+    Pay your Progressive insurance bill fast — online, by phone, through automatic payments, or with customer support.
+    <br><br>
+    <span style="background:#fff;color:#0033a0;font-weight:900;padding:6px 12px;border-radius:6px;">
+      Need help now? Call: <a href="tel:+18554859479" style="color:#e65e29;text-decoration:none;">(855) 485-9479</a>
+    </span>
+    <br><br>
+    <i>For safety, the support number inside the article appears as <b>𝟴𝟱𝟱 [❯❯] 𝟰𝟴𝟱 [❯❯] 𝟵𝟰𝟳𝟵</b> to prevent spam scraping.</i>
+  </p>
+</header>
+
+<!-- ====================== MAIN CONTENT ========================= -->
+
+<section>
+  <div class="section-box">
+    <h2><i class="fa-solid fa-money-check-dollar"></i> How to Pay Your Progressive Insurance Bill</h2>
+
+    <div class="icon-line"><i class="fa-solid fa-globe"></i> <b>Online:</b> Pay through your Progressive account dashboard.</div>
+    <div class="icon-line"><i class="fa-solid fa-phone"></i> <b>Phone Payment:</b> For quick help call 𝟴𝟱𝟱 [❯❯] 𝟰𝟴𝟱 [❯❯] 𝟵𝟰𝟳𝟵.</div>
+    <div class="icon-line"><i class="fa-solid fa-mobile-screen"></i> <b>Mobile App:</b> Manage billing, autopay, ID cards & more.</div>
+    <div class="icon-line"><i class="fa-solid fa-building-columns"></i> <b>Bank Payments:</b> ACH transfers & auto-debit options.</div>
+    <div class="icon-line"><i class="fa-solid fa-location-dot"></i> <b>In Person:</b> Authorized payment centers available nationwide.</div>
+  </div>
+
+  <div class="section-box">
+    <h2><i class="fa-solid fa-circle-question"></i> Common Progressive Billing Questions</h2>
+
+    <h3>1. How do I check my billing date?</h3>
+    <p>Log into the Progressive dashboard or check your monthly billing statement.</p>
+
+    <h3>2. What if my payment is overdue?</h3>
+    <p>You may still be able to reinstate your policy. For guidance call <b>𝟴𝟱𝟱 [❯❯] 𝟰𝟴𝟱 [❯❯] 𝟵𝟰𝟳𝟵</b>.</p>
+
+    <h3>3. Can I update my payment method?</h3>
+    <p>Yes — online account or app allows card, bank, or autopay changes instantly.</p>
+
+    <h3>4. Do they offer extensions?</h3>
+    <p>Extensions depend on your state and policy type. Contact support for options.</p>
+  </div>
+
+  <div class="section-box">
+    <h2><i class="fa-solid fa-user-shield"></i> Why People Choose Progressive for Billing</h2>
+
+    <div class="icon-line"><i class="fa-solid fa-bolt"></i> Fast online payments</div>
+    <div class="icon-line"><i class="fa-solid fa-shield-halved"></i> Secure billing protection</div>
+    <div class="icon-line"><i class="fa-solid fa-clock"></i> 24/7 account access</div>
+    <div class="icon-line"><i class="fa-solid fa-wallet"></i> Multiple payment methods</div>
+    <div class="icon-line"><i class="fa-solid fa-headset"></i> Real-time phone assistance when needed</div>
+  </div>
+
+</section>
+
+<!-- ====================== FLOATING CTA ========================= -->
+<a class="floating-cta" href="tel:+18554859479">
+  <i class="fa-solid fa-phone"></i> Call Now: (855) 485-9479
+</a>
+
+<footer>
+  <p><strong>Disclaimer:</strong> This page is a general billing guidance resource only.  
+  It does not claim affiliation or representation of Progressive.  
+  All information is for educational purposes.</p>
+</footer>
+
 </body>
 </html>
 <!DOCTYPE html>
