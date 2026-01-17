@@ -173,6 +173,33 @@
       .hero h1{font-size:1.8em;}
       .section-box, .card{padding:20px;}
     }
+    /* ===============================
+   MOBILE FIX – BILL PAY PAGE
+   =============================== */
+
+/* Space so fixed elements never cover content */
+body{
+  padding-bottom:120px;
+}
+
+/* Mobile only */
+@media (max-width:600px){
+
+  /* Move CTA to LEFT on mobile */
+  .floating-cta{
+    right:auto !important;
+    left:12px !important;
+    bottom:20px !important;
+  }
+
+  /* Tawk.to chat launcher fix */
+  iframe[src*="tawk.to"]{
+    right:16px !important;     /* screen ke andar */
+    bottom:85px !important;    /* CTA se upar */
+    max-width:calc(100vw - 32px);
+  }
+
+}
   </style>
 </head>
 
