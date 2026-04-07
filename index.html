@@ -173,6 +173,40 @@
       .hero h1{font-size:1.8em;}
       .section-box, .card{padding:20px;}
     }
+    /* ===== FINAL MOBILE OVERFLOW FIX ===== */
+
+/* horizontal scroll band */
+body {
+  overflow-x: hidden;
+}
+
+/* mobile layout fix */
+@media (max-width: 600px) {
+
+  .row, .flex, .item, .grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
+  .row > div,
+  .flex > div {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* text wrap fix */
+  p, span {
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+}
+
+/* phone number proper break */
+.phone {
+  display: block;
+  font-weight: bold;
+}
     /* ===============================
    MOBILE FIX – BILL PAY PAGE
    =============================== */
