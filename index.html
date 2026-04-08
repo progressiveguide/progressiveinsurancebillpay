@@ -130,11 +130,12 @@ a{text-decoration:none;color:var(--brand);}
 
 /* NAVIGATION */
 nav {background:var(--brand);}
-nav .container {
+    nav > .container {
   display:flex;
   align-items:center;
   justify-content:space-between;
   padding:1.1em 22px;
+    }
 }
 nav .menu {display:flex;gap:1.4em;}
 nav a {
@@ -191,6 +192,7 @@ nav .logo i {font-size:2em;}
   margin:0 auto;
   padding:0 22px;
   width:100%;
+  display:block;   /* IMPORTANT */
 }
 
 section{
