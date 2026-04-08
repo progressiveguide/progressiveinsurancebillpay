@@ -72,7 +72,7 @@
       {
         "@type": "Question",
         "name": "Does Progressive offer AutoPay?",
-        "acceptedAnswer": {
+    "acceptedAnswer": {
           "@type": "Answer",
           "text": "Yes. AutoPay (recurring payments) can be set up from your account dashboard or mobile app and helps avoid missed payments."
         }
@@ -98,127 +98,237 @@
   </script>
 
   <style>
-    /* Merged and simplified styles for all three sections */
-    :root {--brand:#0033a0;--cta:#21b217;--cta-dark:#168a12;--danger:#e65e29;--grey-bg:#f4f7fb;}
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial, sans-serif;}
-    body{background:var(--grey-bg);color:#333;line-height:1.7;}
-    a{text-decoration:none;color:var(--brand);}
-
-    /* NAVIGATION */
-    nav {background:var(--brand);}
-    nav .container {display:flex;align-items:center;justify-content:space-between;padding:1.1em 22px;}
-    nav .menu {display:flex;gap:1.4em;}
-    nav a {color:#fff;text-decoration:none;padding:0.44em 1em;border-radius:7px;}
-    nav a:hover, nav a.active {background:#002770;}
-    nav .logo {display:flex;align-items:center;gap:11px;color:#fff;}
-    nav .logo i {font-size:2em;}
-
-    /* HEADER */
-    .hero{
-      background: linear-gradient(135deg,#0033a0,#0058d4);
-      color:#fff;padding:56px 0 38px;
-      text-align:center;
-    }
-    .hero-content {max-width:900px;margin:0 auto;padding:0 22px;}
-    .hero h1{font-size:2.3em;margin-bottom:20px;font-weight:800;}
-    .hero p{max-width:850px;margin:0 auto 14px;font-size:1.1em;font-weight:500;}
-    .call-highlight{background:#fff;color:#0033a0;font-weight:900;padding:6px 12px;border-radius:6px;display:inline-block;}
-
-    /* CONTENT SECTIONS */
-    .container{max-width:1100px;margin:0 auto;padding:0 22px;}
-    section{padding:30px 0;max-width:1100px;margin:auto;}
-    .section-box, .card{
-      background:#fff;border-radius:12px;padding:35px;
-      box-shadow:0 3px 14px rgba(0,0,0,0.07);margin-bottom:35px;
-    }
-    h2{font-size:1.6em;margin-bottom:15px;color:#0033a0;font-weight:800;margin-top:0;}
-    h3{font-size:1.25em;margin:12px 0;color:#0033a0;font-weight:700;}
-
-    /* ICON LISTS */
-    .icon-line{margin:10px 0;display:flex;gap:12px;font-size:1.05em;align-items:flex-start;}
-    .icon-line i{color:#0058d4;font-size:1.2em;margin-top:2px;}
-    .methods-list li {margin-bottom:0.7em;font-size:1.05em;}
-
-    /* ACCORDION/COLLAPSE */
-    .collapse-item {margin:0;border-top:1px solid #eaeaea;}
-    .collapse-title {font-weight:600;cursor:pointer;padding:11px 0 9px;transition:color .2s;color:var(--brand);}
-    .collapse-title i {margin-right:7px;color:#21b217;}
-    .collapse-title:hover {color:#0058d4;}
-    .collapse-content {display:block;padding:0 0 13px 7px;}
-    .collapse-item.open .collapse-content {display:block;}
-
-    /* INFO BOXES & CTAS */
-    .trusted, .security-tip {font-size:1.06em;padding:15px 16px;background:#eaffec;border-left:7px solid #168a12;border-radius:9px;margin:23px 0;}
-    .info-box, .callbox {background:#f0f9ff;border-left:7px solid var(--brand);padding:20px 21px;margin:27px 0;font-size:1.09em;border-radius:13px;}
-    .cta-btn {background:var(--cta);color:#fff;padding:13px 26px; font-size:1.05em;border-radius:7px;border:none;cursor:pointer;font-weight:600;}
-    .cta-btn:hover {background:#168a12;}
-
-    /* FOOTER & DISCLAIMER */
-    footer{padding:30px 20px;text-align:center;font-size:0.9em;color:#777;background:#002770;color:#eee;margin-top:43px;}
-    .disclaimer {background:#fffbe8;color:#885a00;padding:11px 7px;border-radius:7px;border:1px solid #ffeac2;margin-top:13px;font-size:0.97em;}
-
-    /* ===== FINAL MOBILE OVERFLOW FIX ===== */
-
-/* horizontal scroll band */
-body {
-  overflow-x: hidden;
+:root {
+  --brand:#0033a0;
+  --cta:#21b217;
+  --cta-dark:#168a12;
+  --danger:#e65e29;
+  --grey-bg:#f4f7fb;
 }
 
-/* mobile layout fix */
-@media (max-width: 600px) {
-
-  .row, .flex, .item, .grid {
-    display: block !important;
-    width: 100% !important;
-  }
-
-  .row > div,
-  .flex > div {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  /* text wrap fix */
-  p, span {
-    word-break: break-word;
-    overflow-wrap: anywhere;
-  }
-
+/* SAFE RESET */
+html, body {
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
 }
 
-/* phone number proper break */
-.phone {
-  display: block;
-  font-weight: bold;
+*, *::before, *::after {
+  box-sizing: inherit;
 }
-    /* ===============================
-   MOBILE FIX – BILL PAY PAGE
-   =============================== */
 
-/* Space so fixed elements never cover content */
 body{
+  background:var(--grey-bg);
+  color:#333;
+  line-height:1.7;
+  overflow-x:hidden;
   padding-bottom:120px;
 }
 
-/* Mobile only */
+a{text-decoration:none;color:var(--brand);}
+
+/* NAVIGATION */
+nav {background:var(--brand);}
+nav .container {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.1em 22px;
+}
+nav .menu {display:flex;gap:1.4em;}
+nav a {
+  color:#fff;
+  padding:0.44em 1em;
+  border-radius:7px;
+}
+nav a:hover, nav a.active {background:#002770;}
+nav .logo {
+  display:flex;
+  align-items:center;
+  gap:11px;
+  color:#fff;
+}
+nav .logo i {font-size:2em;}
+
+/* HEADER */
+.hero{
+  background: linear-gradient(135deg,#0033a0,#0058d4);
+  color:#fff;
+  padding:56px 0 38px;
+  text-align:center;
+}
+.hero-content {
+  max-width:900px;
+  margin:0 auto;
+  padding:0 22px;
+}
+.hero h1{
+  font-size:2.3em;
+  margin-bottom:20px;
+  font-weight:800;
+  word-break:normal;
+}
+.hero p{
+  max-width:850px;
+  margin:0 auto 14px;
+  font-size:1.1em;
+  font-weight:500;
+}
+
+.call-highlight{
+  background:#fff;
+  color:#0033a0;
+  font-weight:900;
+  padding:6px 12px;
+  border-radius:6px;
+  display:inline-block;
+}
+
+/* CONTENT */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 22px;
+  width:100%;
+}
+
+section{
+  padding:30px 0;
+  max-width:1100px;
+  margin:auto;
+  width:100%;
+}
+
+.section-box, .card{
+  background:#fff;
+  border-radius:12px;
+  padding:35px;
+  box-shadow:0 3px 14px rgba(0,0,0,0.07);
+  margin-bottom:35px;
+  width:100%;
+}
+
+h2{
+  font-size:1.6em;
+  margin-bottom:15px;
+  color:#0033a0;
+  font-weight:800;
+}
+
+h3{
+  font-size:1.25em;
+  margin:12px 0;
+  color:#0033a0;
+  font-weight:700;
+}
+
+/* TEXT FIX (IMPORTANT) */
+h1,h2,h3,p,span {
+  writing-mode: horizontal-tb !important;
+  white-space: normal !important;
+  word-break: normal !important;
+}
+
+/* ICON LIST */
+.icon-line{
+  margin:10px 0;
+  display:flex;
+  gap:12px;
+  font-size:1.05em;
+  align-items:flex-start;
+}
+.icon-line i{
+  color:#0058d4;
+  font-size:1.2em;
+  margin-top:2px;
+}
+
+/* ACCORDION */
+.collapse-item {border-top:1px solid #eaeaea;}
+.collapse-title {
+  font-weight:600;
+  cursor:pointer;
+  padding:11px 0 9px;
+  color:var(--brand);
+}
+.collapse-title i {margin-right:7px;color:#21b217;}
+.collapse-title:hover {color:#0058d4;}
+.collapse-content {padding:0 0 13px 7px;}
+
+/* BOXES */
+.trusted, .security-tip {
+  padding:15px 16px;
+  background:#eaffec;
+  border-left:7px solid #168a12;
+  border-radius:9px;
+  margin:23px 0;
+}
+
+.info-box, .callbox {
+  background:#f0f9ff;
+  border-left:7px solid var(--brand);
+  padding:20px 21px;
+  margin:27px 0;
+  border-radius:13px;
+}
+
+/* BUTTON */
+.cta-btn {
+  background:var(--cta);
+  color:#fff;
+  padding:13px 26px;
+  border-radius:7px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+.cta-btn:hover {background:#168a12;}
+
+/* FOOTER */
+footer{
+  padding:30px 20px;
+  text-align:center;
+  font-size:0.9em;
+  background:#002770;
+  color:#eee;
+  margin-top:43px;
+}
+
+.disclaimer {
+  background:#fffbe8;
+  color:#885a00;
+  padding:11px 7px;
+  border-radius:7px;
+  border:1px solid #ffeac2;
+  margin-top:13px;
+}
+
+/* MOBILE FIX */
 @media (max-width:600px){
 
-  /* Move CTA to LEFT on mobile */
-  .floating-cta{
-    right:auto !important;
-    left:12px !important;
-    bottom:20px !important;
+  .container, section, .section-box {
+    width:100% !important;
+    max-width:100% !important;
   }
 
-  /* Tawk.to chat launcher fix */
-  iframe[src*="tawk.to"]{
-    right:16px !important;     /* screen ke andar */
-    bottom:85px !important;    /* CTA se upar */
-    max-width:calc(100vw - 32px);
+  .icon-line {
+    flex-direction:row;
   }
 
+  p, span {
+    word-break:break-word;
+    overflow-wrap:anywhere;
+  }
+
+  /* floating CTA safe position */
+  .floating-call-btn{
+    left:50% !important;
+    transform:translateX(-50%);
+    bottom:20px;
+  }
 }
-  </style>
+  </style> 
 </head>
 
 <body>
