@@ -520,6 +520,48 @@ body {
 .section-box > * {
   max-width: 100% !important;
     }
+    /* ===== PREMIUM SPACING FIX ===== */
+
+/* hero text spacing */
+.hero p {
+  line-height: 1.7 !important;
+  margin-top: 12px;
+}
+
+/* heading gap */
+.hero h1 {
+  margin-bottom: 14px !important;
+}
+
+/* call box spacing */
+.call-highlight {
+  margin-top: 20px !important;
+}
+
+/* below call text */
+.hero p:last-of-type {
+  margin-top: 18px;
+}
+
+/* overall breathing */
+.hero-content {
+  padding-bottom: 10px;
+}
+
+/* mobile readability */
+@media (max-width:600px){
+  .hero p {
+    font-size: 1.05em;
+    line-height: 1.75;
+  }
+}
+    /* ===== MICRO UI FIX ===== */
+.call-highlight + p {
+  margin-top: 16px;
+  font-size: 14px;
+  opacity: 0.9;
+  text-align: center;
+}
 </style> 
 </head>
 <body>
