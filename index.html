@@ -349,7 +349,15 @@ nav .logo {
     align-items: flex-start;
     gap: 10px;
   }
+/* remove side gaps */
+body {
+  margin: 0;
+  padding: 0;
+}
 
+html, body {
+  width: 100%;
+}
   nav .menu {
     width: 100%;
     justify-content: flex-start;
@@ -455,42 +463,63 @@ nav .menu a.active {
 }
 
 /* floating card */
-.hero .call-highlight {
-  position: absolute !important;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: -35px !important;
+/* ===== FIX PHONE NUMBER COLOR ===== */
 
+.call-highlight a,
+.info-box a,
+.section-box a {
+  color: #0033a0 !important;
+  font-weight: 700 !important;
+}
+
+/* specifically number highlight */
+.call-highlight {
   background: #ffffff !important;
   color: #0033a0 !important;
-
-  padding: 16px 20px !important;
-  border-radius: 14px !important;
-
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
-
-  font-size: 15px;
-  z-index: 10;
 }
 
-/* remove gap */
+/* inside info box */
+.info-box {
+  color: #1f2937 !important;
+}
+
+/* prevent white text issue */
 .section-box {
-  margin-top: 60px !important;
+  color: #1f2937 !important;
+}
+    /* ===== FIX PAGE WIDTH ISSUE ===== */
+
+/* force full width */
+.container,
+section,
+.section-box,
+.card {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
-/* premium section overlap */
-.section-box:first-of-type {
-  margin-top: 80px !important;
+/* remove unwanted center alignment */
+.container {
+  margin: 0 auto !important;
+  padding: 0 16px !important;
 }
 
-/* font override (remove cartoon) */
+/* fix section box spacing */
+.section-box {
+  margin: 20px auto !important;
+  border-radius: 12px;
+}
+
+/* prevent narrow column */
 body {
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif !important;
-  }
-/* better spacing */
-.hero {
-  padding: 35px 20px 25px !important;
-  }
+  overflow-x: hidden;
+}
+
+/* fix inner content */
+.hero-content,
+.section-box > * {
+  max-width: 100% !important;
+    }
 </style> 
 </head>
 <body>
