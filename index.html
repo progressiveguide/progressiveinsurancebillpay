@@ -446,25 +446,43 @@ nav .menu a.active {
   position: relative;
 }
 
-/* call card overlap */
-.call-highlight {
-  position: relative;
-  top: 40px;
-  background:#ffffff;
-  color:#0033a0;
-  padding:14px 18px;
-  border-radius:12px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.15);
-  display:inline-block;
-  font-size:15px;
-  }
-    /* ===== REMOVE GAP + PREMIUM FLOW ===== */
+/* ===== FORCE PREMIUM HERO FIX ===== */
 
-.premium-start {
-  margin-top: -40px !important;
-  border-radius:16px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-  }
+/* hero spacing */
+.hero {
+  padding-bottom: 100px !important;
+  position: relative !important;
+}
+
+/* floating card */
+.hero .call-highlight {
+  position: absolute !important;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -35px !important;
+
+  background: #ffffff !important;
+  color: #0033a0 !important;
+
+  padding: 16px 20px !important;
+  border-radius: 14px !important;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+
+  font-size: 15px;
+  z-index: 10;
+}
+
+/* remove gap */
+.section-box {
+  margin-top: 60px !important;
+}
+
+/* premium section overlap */
+.section-box:first-of-type {
+  margin-top: 80px !important;
+}
+
 /* font override (remove cartoon) */
 body {
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif !important;
