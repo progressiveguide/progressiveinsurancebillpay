@@ -112,7 +112,9 @@ h2{
 @media(max-width:600px){
   .hero h1{font-size:1.5em}
 }
-
+html {
+  scroll-behavior: smooth;
+}
 </style>
 </head>
 <body>
@@ -121,11 +123,10 @@ h2{
   <div class="container">
     <div>💼 Progressive Help</div>
     <div>
-      <a href="#">Introduction</a>
-      <a href="#">Methods</a>
-      <a href="#">How-To</a>
-      <a href="#">FAQs</a>
-    </div>
+      <a href="#introduction">Introduction</a>
+<a href="#methods">Methods</a>
+<a href="#howto">How-To</a>
+<a href="#faqs">FAQs</a>
   </div>
 </nav>
 
@@ -178,7 +179,7 @@ h2{
 Commonly used by customers for billing questions and payment assistance.
 </p>
   </div>
-  <section class="section-box">
+  <section id="introduction" class="section-box">
 
   <h2>Quick Billing Help</h2>
 <section class="section-box premium-start">
@@ -254,7 +255,7 @@ Commonly used by customers for billing questions and payment assistance.
 <p>Billing options and payment availability may vary depending on policy type, account setup, and selected payment preferences within the user account.</p>
   </section>
 
-  <section class="card" id="methods">
+  <div id="methods" class="section-box">
     <h2>All Progressive Insurance Bill Pay Methods (2026 Update)</h2>
     <ul class="methods-list">
       <li><b>Online Account Payment:</b> Log in at <a href="https://www.progressive.com/" target="_blank" rel="noopener">progressive.com</a> and pay using your debit/credit card or bank account — instant receipt and fastest posting.</li>
@@ -269,7 +270,7 @@ Commonly used by customers for billing questions and payment assistance.
     <p class="trusted"><i class="fas fa-shield-alt"></i> <b>Tip:</b> For overdue or reinstatement, use online, app, or phone for the fastest Progressive bill pay posting.</p>
   </section>
 
-  <section class="card" id="stepbystep">
+  <section id="howto" class="section-box">
     <h2>How-To Guides & Troubleshooting</h2>
     <div class="collapse">
       <div class="collapse-item open">
@@ -311,7 +312,7 @@ Commonly used by customers for billing questions and payment assistance.
     </div>
   </section>
 
-  <section class="card faq-section" id="faq">
+  <section class="card faq-section" id="faqs">
     <h2>Common Questions About Progressive Insurance Bill Pay</h2>
     <div class="collapse">
       <div class="collapse-item">
