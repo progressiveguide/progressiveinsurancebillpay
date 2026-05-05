@@ -207,6 +207,70 @@ h3{
    height:56px;
  }
 }
+ /* ===== FORCE VISIBILITY FIX ===== */
+
+/* fix all section content visibility */
+.section-box,
+.section-box p,
+.section-box li,
+.section-box span,
+.section-box h2,
+.section-box h3{
+  color:#1f2937 !important;
+  opacity:1 !important;
+  visibility:visible !important;
+}
+
+/* fix blue background text */
+.hero p,
+.hero span{
+  color:#ffffff !important;
+}
+
+/* fix card background properly */
+.section-box{
+  background:#ffffff !important;
+  position:relative;
+  z-index:1;
+}
+
+/* fix hidden lists */
+ul, li{
+  display:block;
+}
+
+/* fix icon alignment */
+.icon-line{
+  display:flex !important;
+  align-items:flex-start;
+  gap:10px;
+}
+
+/* prevent overlay issue */
+section{
+  position:relative;
+  z-index:1;
+}
+
+/* fix spacing */
+.section-box{
+  margin:20px auto !important;
+}
+
+/* fix heading visibility */
+h1, h2, h3{
+  opacity:1 !important;
+}
+
+/* remove any accidental hidden elements */
+*{
+  text-indent:0 !important;
+}
+
+/* fix mobile overflow */
+body{
+  overflow-x:hidden;
+}
  </style>
 
 
