@@ -31,6 +31,7 @@
       --text-dark: #1f2937;
       --text-light: #6b7280;
       --border-light: #e5e7eb;
+      --success: #10b981;
     }
 
     * {
@@ -97,13 +98,14 @@
     nav .menu {
       display: flex;
       gap: clamp(0.8em, 2vw, 1.5em);
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
       padding: clamp(0.4em, 1vw, 0.6em) clamp(0.8em, 2vw, 1.2em);
       border-radius: 6px;
-      font-size: clamp(0.9em, 1.5vw, 1em);
+      font-size: clamp(0.85em, 1.5vw, 0.95em);
       transition: all 0.2s ease;
     }
 
@@ -117,12 +119,12 @@
     .hero {
       background: linear-gradient(135deg, #0033a0, #0058d4);
       color: white;
-      padding: clamp(3em, 8vw, 4em) clamp(1.5em, 4vw, 2em);
+      padding: clamp(2.5em, 8vw, 4em) clamp(1.5em, 4vw, 2em);
       text-align: center;
     }
 
     .hero-content {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
     }
 
@@ -130,30 +132,32 @@
       font-size: clamp(1.8em, 5vw, 2.5em);
       margin-bottom: 1.2em;
       font-weight: 800;
-      line-height: 1.2;
+      line-height: 1.3;
     }
 
     .hero p {
-      max-width: 850px;
+      max-width: 900px;
       margin: 0 auto 1.5em;
-      font-size: clamp(1em, 2.5vw, 1.15em);
+      font-size: clamp(0.95em, 2.5vw, 1.1em);
       font-weight: 500;
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     .call-highlight {
       background: white;
       color: var(--brand);
       font-weight: 900;
-      padding: 0.6em 1em;
-      border-radius: 6px;
+      padding: 0.8em 1.2em;
+      border-radius: 8px;
       display: inline-block;
-      margin: 0.5em 0;
+      margin: 0.8em 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
 
     .call-highlight a {
       color: var(--brand);
       font-weight: 900;
+      font-size: 1.1em;
     }
 
     /* ===== CONTAINERS & SECTIONS ===== */
@@ -164,20 +168,21 @@
     }
 
     main {
-      margin-bottom: 2em;
+      margin-bottom: 3em;
     }
 
     section {
-      padding: clamp(2em, 5vw, 3em) 0;
+      padding: clamp(2.5em, 6vw, 3.5em) 0;
     }
 
     .section-box,
     .card {
       background: white;
       border-radius: 12px;
-      padding: clamp(1.8em, 4vw, 2.5em);
+      padding: clamp(2em, 5vw, 2.8em);
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      margin-bottom: clamp(2em, 4vw, 2.5em);
+      margin-bottom: clamp(2.5em, 5vw, 3em);
+      line-height: 1.8;
     }
 
     .section-box:focus-within,
@@ -190,61 +195,167 @@
       font-size: clamp(1.8em, 5vw, 2.3em);
       font-weight: 800;
       color: var(--brand);
-      margin-bottom: 1em;
+      margin-bottom: 1.2em;
       line-height: 1.2;
     }
 
     h2 {
-      font-size: clamp(1.4em, 3.5vw, 1.8em);
+      font-size: clamp(1.5em, 4vw, 1.9em);
       font-weight: 800;
       color: var(--brand);
-      margin-bottom: 1em;
+      margin-bottom: 1.3em;
       margin-top: 0;
       line-height: 1.3;
     }
 
     h3 {
-      font-size: clamp(1.1em, 2.5vw, 1.35em);
+      font-size: clamp(1.2em, 3vw, 1.5em);
       font-weight: 700;
       color: var(--brand);
-      margin: 1.2em 0 0.8em;
+      margin: 1.5em 0 0.9em;
+      line-height: 1.3;
     }
 
     h4 {
-      font-size: clamp(1em, 2vw, 1.15em);
+      font-size: clamp(1.05em, 2.5vw, 1.25em);
       font-weight: 700;
       color: var(--text-dark);
-      margin: 1em 0 0.6em;
+      margin: 1.2em 0 0.8em;
     }
 
     /* ===== ICON LISTS ===== */
     .icon-line {
-      margin: 1em 0;
+      margin: 1.2em 0;
       display: flex;
-      gap: 1em;
-      font-size: clamp(0.95em, 2vw, 1.05em);
+      gap: 1.2em;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
       align-items: flex-start;
+      line-height: 1.7;
     }
 
     .icon-line i {
       color: #0058d4;
-      font-size: 1.3em;
-      min-width: 1.5em;
+      font-size: 1.4em;
+      min-width: 1.8em;
       margin-top: 0.2em;
       flex-shrink: 0;
     }
 
+    /* ===== STEP GUIDES ===== */
+    .step-guide {
+      background: #f9fafb;
+      border: 1px solid var(--border-light);
+      border-radius: 10px;
+      padding: clamp(1.5em, 4vw, 2.2em);
+      margin: 2em 0;
+      line-height: 1.9;
+    }
+
+    .step-guide ol {
+      counter-reset: step-counter;
+      list-style: none;
+      padding: 0;
+      margin: 1.5em 0;
+    }
+
+    .step-guide li {
+      counter-increment: step-counter;
+      margin-bottom: 1.2em;
+      padding-left: 3.5em;
+      position: relative;
+      font-size: clamp(0.95em, 2vw, 1.05em);
+      line-height: 1.8;
+    }
+
+    .step-guide li:before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--cta);
+      color: white;
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1em;
+    }
+
+    /* ===== TWO COLUMN LAYOUT ===== */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+      margin: 2em 0;
+    }
+
+    .column {
+      background: #f9fafb;
+      padding: clamp(1.5em, 3vw, 2em);
+      border-radius: 10px;
+      border-left: 5px solid var(--brand);
+    }
+
+    .column h4 {
+      margin-top: 0;
+      font-size: clamp(1.05em, 2.5vw, 1.25em);
+    }
+
+    .column ol {
+      counter-reset: col-counter;
+      list-style: none;
+      padding: 0;
+      margin: 1.5em 0;
+    }
+
+    .column li {
+      counter-increment: col-counter;
+      margin-bottom: 0.9em;
+      padding-left: 2.2em;
+      position: relative;
+      font-size: clamp(0.9em, 2vw, 1em);
+      line-height: 1.6;
+    }
+
+    .column li:before {
+      content: counter(col-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: var(--cta);
+      color: white;
+      width: 1.8em;
+      height: 1.8em;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85em;
+    }
+
+    @media (max-width: 900px) {
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ===== METHODS LIST ===== */
     .methods-list {
       list-style: none;
       padding: 0;
+      margin: 1.5em 0;
     }
 
     .methods-list li {
-      margin-bottom: 1em;
-      padding-left: 2em;
+      margin-bottom: 1.1em;
+      padding-left: 2.5em;
       position: relative;
-      font-size: clamp(1em, 2vw, 1.05em);
-      line-height: 1.6;
+      font-size: clamp(0.95em, 2vw, 1.05em);
+      line-height: 1.7;
     }
 
     .methods-list li:before {
@@ -253,12 +364,12 @@
       left: 0;
       color: var(--cta);
       font-weight: bold;
-      font-size: 1.2em;
+      font-size: 1.4em;
     }
 
     /* ===== ACCORDION/COLLAPSE ===== */
     .collapse {
-      border-top: 1px solid var(--border-light);
+      border-top: 2px solid var(--border-light);
     }
 
     .collapse-item {
@@ -269,13 +380,14 @@
     .collapse-title {
       font-weight: 600;
       cursor: pointer;
-      padding: 1.2em 0;
+      padding: 1.3em 0;
       transition: color 0.2s ease;
       color: var(--brand);
       display: flex;
       align-items: center;
       gap: 0.8em;
       user-select: none;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
     }
 
     .collapse-title:hover {
@@ -284,7 +396,7 @@
 
     .collapse-title i {
       color: var(--cta);
-      font-size: 1.1em;
+      font-size: 1.2em;
       transition: transform 0.2s ease;
     }
 
@@ -294,9 +406,9 @@
 
     .collapse-content {
       display: none;
-      padding: 0 0 1.2em 2em;
-      line-height: 1.8;
-      font-size: clamp(0.95em, 2vw, 1.05em);
+      padding: 0 0 1.5em 2.2em;
+      line-height: 1.9;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
       color: var(--text-light);
     }
 
@@ -304,57 +416,78 @@
       display: block;
     }
 
+    .collapse-content ol,
+    .collapse-content ul {
+      margin-left: 1.5em;
+      margin-top: 1em;
+    }
+
+    .collapse-content li {
+      margin-bottom: 0.8em;
+    }
+
     /* ===== INFO BOXES ===== */
     .info-box,
     .callbox {
       background: #f0f9ff;
-      border-left: 5px solid var(--brand);
-      padding: clamp(1.2em, 3vw, 1.5em);
-      margin: clamp(1.5em, 3vw, 2em) 0;
-      border-radius: 8px;
-      font-size: clamp(0.95em, 2vw, 1.05em);
-      line-height: 1.7;
+      border-left: 6px solid var(--brand);
+      padding: clamp(1.5em, 4vw, 2em);
+      margin: clamp(2em, 4vw, 2.5em) 0;
+      border-radius: 10px;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
+      line-height: 1.8;
     }
 
     .security-tip {
       background: #eaffec;
-      border-left: 5px solid var(--cta-dark);
-      padding: clamp(1.2em, 3vw, 1.5em);
-      margin: clamp(1.5em, 3vw, 2em) 0;
-      border-radius: 8px;
-      font-size: clamp(0.95em, 2vw, 1.05em);
+      border-left: 6px solid var(--cta-dark);
+      padding: clamp(1.5em, 4vw, 2em);
+      margin: clamp(2em, 4vw, 2.5em) 0;
+      border-radius: 10px;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
+      line-height: 1.8;
     }
 
     .trusted {
       background: #eaffec;
-      border-left: 5px solid var(--cta-dark);
-      padding: clamp(1.2em, 3vw, 1.5em);
-      margin: clamp(1.5em, 3vw, 2em) 0;
-      border-radius: 8px;
-      font-size: clamp(0.95em, 2vw, 1.05em);
+      border-left: 6px solid var(--cta-dark);
+      padding: clamp(1.5em, 4vw, 2em);
+      margin: clamp(2em, 4vw, 2.5em) 0;
+      border-radius: 10px;
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
+      line-height: 1.8;
+    }
+
+    .tip-box {
+      background: #fffbeb;
+      border-left: 6px solid #f59e0b;
+      padding: clamp(1.5em, 4vw, 2em);
+      margin: clamp(2em, 4vw, 2.5em) 0;
+      border-radius: 10px;
     }
 
     /* ===== BUTTONS ===== */
     .cta-btn {
       background: var(--cta);
       color: white;
-      padding: clamp(0.8em, 2vw, 1em) clamp(1.2em, 3vw, 1.8em);
-      font-size: clamp(0.95em, 2vw, 1.05em);
-      border-radius: 7px;
+      padding: clamp(0.9em, 2.5vw, 1.15em) clamp(1.3em, 3.5vw, 2em);
+      font-size: clamp(0.95em, 2.5vw, 1.05em);
+      border-radius: 8px;
       border: none;
       cursor: pointer;
       font-weight: 700;
       transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.6em;
+      gap: 0.7em;
       text-decoration: none;
+      box-shadow: 0 4px 12px rgba(33, 178, 23, 0.2);
     }
 
     .cta-btn:hover {
       background: var(--cta-dark);
       transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(33, 178, 23, 0.3);
+      box-shadow: 0 6px 16px rgba(33, 178, 23, 0.3);
     }
 
     .cta-btn:active {
@@ -371,12 +504,12 @@
       color: white;
       border-radius: 50px;
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-      font-size: clamp(0.95em, 2vw, 1.1em);
-      padding: clamp(0.8em, 2vw, 1em) clamp(1.2em, 3vw, 1.8em);
+      font-size: clamp(0.95em, 2.5vw, 1.1em);
+      padding: clamp(1em, 2.5vw, 1.2em) clamp(1.5em, 4vw, 2em);
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 0.6em;
+      gap: 0.7em;
       transition: all 0.2s ease;
       text-decoration: none;
     }
@@ -389,7 +522,7 @@
 
     /* ===== FOOTER ===== */
     footer {
-      padding: clamp(2em, 4vw, 3em) clamp(1.2em, 4vw, 2em);
+      padding: clamp(2.5em, 5vw, 3.5em) clamp(1.2em, 4vw, 2em);
       text-align: center;
       background: #002770;
       color: #e5e7eb;
@@ -397,19 +530,20 @@
     }
 
     footer p {
-      margin: 0.5em 0;
-      font-size: clamp(0.9em, 1.5vw, 1em);
+      margin: 0.7em 0;
+      font-size: clamp(0.9em, 2vw, 1em);
+      line-height: 1.7;
     }
 
     .disclaimer {
       background: #fffbe8;
       color: #885a00;
-      padding: 1em;
-      border-radius: 8px;
-      border: 1px solid #ffeac2;
+      padding: clamp(1.2em, 3vw, 1.5em);
+      border-radius: 10px;
+      border: 2px solid #ffeac2;
       margin-top: 1.5em;
-      font-size: clamp(0.85em, 1.5vw, 0.95em);
-      line-height: 1.6;
+      font-size: clamp(0.85em, 2vw, 0.95em);
+      line-height: 1.8;
     }
 
     /* ===== RESPONSIVE ===== */
@@ -423,14 +557,14 @@
       }
 
       .floating-cta {
-        left: clamp(1em, 3vw, 1.5em) !important;
+        left: clamp(1em, 3vw, 1.2em) !important;
         right: auto !important;
         bottom: clamp(1.2em, 3vw, 1.5em) !important;
       }
 
       iframe[src*="tawk.to"] {
         right: 1em !important;
-        bottom: 6em !important;
+        bottom: 6.5em !important;
         max-width: calc(100vw - 2em);
       }
 
@@ -439,7 +573,17 @@
       }
 
       section {
-        padding: clamp(1.5em, 4vw, 2.5em) 0;
+        padding: clamp(1.8em, 5vw, 2.8em) 0;
+      }
+
+      .step-guide li {
+        padding-left: 3em;
+      }
+
+      .step-guide li:before {
+        width: 2.2em;
+        height: 2.2em;
+        font-size: 1em;
       }
     }
 
@@ -454,12 +598,13 @@
 
       .section-box,
       .card {
-        padding: 1.2em;
+        padding: 1.5em;
       }
 
       nav .container {
         flex-direction: column;
         gap: 1em;
+        padding: 1em;
       }
 
       .hero {
@@ -467,16 +612,26 @@
       }
 
       .hero h1 {
-        font-size: 1.6em;
+        font-size: 1.5em;
       }
 
       .methods-list li {
-        padding-left: 1.8em;
+        padding-left: 2em;
         font-size: 0.95em;
       }
 
       .icon-line {
         font-size: 0.95em;
+      }
+
+      .step-guide li {
+        padding-left: 2.8em;
+      }
+
+      .step-guide li:before {
+        width: 2em;
+        height: 2em;
+        font-size: 0.9em;
       }
     }
 
@@ -490,6 +645,11 @@
       body {
         background: white;
         color: black;
+      }
+
+      .card,
+      .section-box {
+        page-break-inside: avoid;
       }
     }
   </style>
@@ -505,14 +665,6 @@
       "@type": "Organization",
       "name": "Progressive Guide",
       "logo": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/money-bill.svg"
-    },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://progressiveguide.github.io/progressiveinsurancebillpay/?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
     }
   }
   </script>
@@ -526,15 +678,13 @@
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": "https://progressiveguide.github.io/",
-        "image": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/home.svg"
+        "item": "https://progressiveguide.github.io/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Progressive Bill Pay Guide",
-        "item": "https://progressiveguide.github.io/progressiveinsurancebillpay/",
-        "image": "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/money-bill.svg"
+        "item": "https://progressiveguide.github.io/progressiveinsurancebillpay/"
       }
     ]
   }
@@ -550,7 +700,7 @@
         "name": "How do I pay my Progressive insurance bill online?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Log in to Progressive.com, click 'Billing' or 'Make a Payment', enter payment details (credit, debit, or bank), and submit. Alternatively, call 1(888)620-0950 for assisted payment. Online payments post immediately."
+          "text": "Log in to Progressive.com, click 'Billing' or 'Make a Payment', enter payment details (credit, debit, or bank), and submit. You can also call 1(888)620-0950 for assisted payment. Online payments post immediately and are fully secured."
         }
       },
       {
@@ -558,7 +708,7 @@
         "name": "Can I pay Progressive without logging in?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes! Use the 'Pay Without Logging In' option on Progressive.com or call 1(888)620-0950. Provide your policy number, ZIP code, and last name. Guest payment takes under 2 minutes and posts instantly."
+          "text": "Yes! Use the 'Pay Without Logging In' option on Progressive.com or call 1(888)620-0950. Provide your policy number, ZIP code, and last name. Guest payment takes under 2 minutes and posts instantly with full security."
         }
       },
       {
@@ -566,7 +716,7 @@
         "name": "What is Progressive one-time payment?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "A one-time payment is a single transaction to pay your Progressive bill without setting up recurring AutoPay. You can make a one-time payment online, through the app, as a guest, or by phone at 1(888)620-0950."
+          "text": "A one-time payment is a single transaction to pay your Progressive bill without setting up recurring AutoPay. You can make a one-time payment online, through the app, as a guest without login, or by phone at 1(888)620-0950. It posts immediately."
         }
       },
       {
@@ -574,7 +724,7 @@
         "name": "Can I pay Progressive by phone?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Call 1(888)620-0950 for phone payment assistance. Have your policy number and payment method ready. Phone payments post immediately and are fully secure."
+          "text": "Yes. Call 1(888)620-0950 for phone payment assistance. Have your policy number and payment method ready. Phone payments post immediately and are fully secure. Available 24/7 for your convenience."
         }
       },
       {
@@ -582,7 +732,7 @@
         "name": "Does Progressive offer AutoPay?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. AutoPay (automatic recurring payments) can be set up from your Progressive account dashboard or mobile app. AutoPay helps avoid missed payments and policy lapses."
+          "text": "Yes. AutoPay (automatic recurring payments) can be set up from your Progressive account dashboard or mobile app. AutoPay helps avoid missed payments and policy lapses. You can manage or cancel AutoPay anytime."
         }
       },
       {
@@ -590,7 +740,7 @@
         "name": "What payment methods does Progressive accept?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Progressive accepts credit cards, debit cards, bank accounts (ACH), checks, money orders, PayPal, Apple Pay, Google Pay, and eChecks. Choose the method that works best for you."
+          "text": "Progressive accepts credit cards, debit cards, bank accounts (ACH), PayPal, Apple Pay, Google Pay, checks, money orders, and eChecks. All payment methods are secure and encrypted. Choose the method that works best for you."
         }
       },
       {
@@ -598,7 +748,7 @@
         "name": "Is there a grace period for late Progressive payments?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Most Progressive policies have a short grace period before cancellation. Call 1(888)620-0950 immediately if you're overdue. Extensions may be available depending on your state and policy."
+          "text": "Most Progressive policies have a grace period before cancellation (typically 10-15 days). Call 1(888)620-0950 immediately if you're overdue. Extensions may be available depending on your state and policy."
         }
       },
       {
@@ -606,32 +756,10 @@
         "name": "How long does it take for Progressive payments to post?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Online, app, phone, and guest payments post immediately. Bank transfers take 1–3 business days. Mail payments take 5–10 days. Always save your confirmation number."
+          "text": "Online, app, phone, and guest payments post immediately (within minutes). Bank transfers take 1-3 business days. Mail payments take 5-10 days from postmark. Always save your confirmation number for your records."
         }
       }
     ]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Progressive Insurance Bill Payment",
-    "description": "Secure online and phone bill payment for Progressive Insurance. Pay online, one-time, without login, or call 1(888)620-0950.",
-    "serviceType": "Payment Processing",
-    "provider": {
-      "@type": "Organization",
-      "name": "Progressive Insurance",
-      "url": "https://www.progressive.com",
-      "telephone": "1(888)620-0950"
-    },
-    "areaServed": "US",
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://www.progressive.com/pay/",
-      "servicePhone": "1(888)620-0950"
-    }
   }
   </script>
 
@@ -649,8 +777,9 @@
     </div>
     <div class="menu">
       <a href="#intro" class="active">Introduction</a>
-      <a href="#payment-methods">Payment Methods</a>
-      <a href="#how-to-pay">How-To Pay</a>
+      <a href="#quick-pay">Quick Pay</a>
+      <a href="#payment-methods">Methods</a>
+      <a href="#how-to-pay">How-To</a>
       <a href="#faqs">FAQs</a>
       <a href="#support">Support</a>
     </div>
@@ -668,6 +797,7 @@
         🔒 <strong>Secure Payment Support:</strong> <a href="tel:+18886200950">Call 1(888)620-0950</a>
       </span>
     </p>
+    <p style="margin-top: 1em; font-size: 0.95em;">Available 24/7 for billing assistance, urgent payments, and payment inquiries.</p>
   </div>
 </header>
 
@@ -675,268 +805,438 @@
 
   <!-- Quick Pay Section -->
   <section class="card" id="quick-pay">
-    <h2><i class="fa-solid fa-lightning" aria-hidden="true"></i> Progressive Quick Pay Options</h2>
-    <p>Need to pay your Progressive insurance bill fast? Here are your quickest payment options:</p>
+    <h2><i class="fa-solid fa-lightning" aria-hidden="true"></i> Progressive Quick Pay Options — Fastest Ways to Pay</h2>
+    <p>Need to pay your Progressive insurance bill fast? Choose from these quickest payment methods below:</p>
+    
     <div class="icon-line">
       <i class="fa-solid fa-globe" aria-hidden="true"></i>
-      <span><strong>Pay Online:</strong> Log into progressive.com and make a one-time payment instantly.</span>
+      <span><strong>Pay Online:</strong> Log into progressive.com and make a one-time payment instantly. No login required option available. Payment posts within minutes.</span>
     </div>
+    
     <div class="icon-line">
       <i class="fa-solid fa-phone" aria-hidden="true"></i>
-      <span><strong>Phone Payment:</strong> Call <strong>1(888)620-0950</strong> for quick assisted payment.</span>
+      <span><strong>Phone Payment 24/7:</strong> Call <strong>1(888)620-0950</strong> for quick assisted payment. No waiting. Speak to representative or use automated system. Posts immediately.</span>
     </div>
+    
     <div class="icon-line">
       <i class="fa-solid fa-user-secret" aria-hidden="true"></i>
-      <span><strong>Guest Payment (No Login):</strong> Pay without logging in by using our guest payment portal.</span>
+      <span><strong>Guest Payment (No Login):</strong> Pay without logging in by using guest payment portal. Provide policy number, ZIP, and last name only. Takes under 2 minutes.</span>
     </div>
+    
     <div class="icon-line">
       <i class="fa-solid fa-mobile-screen" aria-hidden="true"></i>
-      <span><strong>Mobile App:</strong> Download Progressive app and pay in seconds with Touch/Face ID.</span>
+      <span><strong>Mobile App Payment:</strong> Download Progressive app and pay in seconds with Touch/Face ID. Manage billing anytime, anywhere. Full account access.</span>
     </div>
-    <p class="trusted" style="margin-top: 1.5em;"><i class="fas fa-shield-alt" aria-hidden="true"></i> <strong>Pro Tip:</strong> All Progressive payments are fully secured and encrypted. Your financial information is protected on every transaction.</p>
+
+    <div class="info-box">
+      <strong>📞 Phone Payment Support Available:</strong> Call 1(888)620-0950 for immediate assistance with any payment method. Available 24 hours, 7 days a week for urgent billing help.
+    </div>
   </section>
 
   <!-- Payment Methods Section -->
   <section class="card" id="payment-methods">
-    <h2><i class="fa-solid fa-credit-card" aria-hidden="true"></i> All Progressive Payment Methods & Options (2026 Update)</h2>
-    <p>Progressive offers 7+ ways to pay your insurance bill. Choose the method that works best for you:</p>
+    <h2><i class="fa-solid fa-credit-card" aria-hidden="true"></i> All Progressive Payment Methods — 7+ Ways to Pay Your Bill</h2>
+    <p>Progressive offers multiple ways to pay your insurance bill. Choose the method that works best for your situation:</p>
 
-    <h3>1. Pay Progressive Online Without Login (Guest Payment)</h3>
-    <p>Don't remember your password? No problem. Use Progressive's guest payment option:</p>
-    <ul class="methods-list">
-      <li>Visit Progressive.com and select "Pay Without Logging In"</li>
-      <li>Enter your policy number, ZIP code, and last name</li>
-      <li>Choose your payment method (card or bank)</li>
-      <li>Complete payment in under 2 minutes</li>
-      <li>Payment posts immediately — <strong>Call 1(888)620-0950 if you need help</strong></li>
-    </ul>
-
-    <h3>2. One-Time Payment via Online Account</h3>
-    <p>Log into your Progressive account to make a single payment:</p>
-    <ul class="methods-list">
-      <li>Log in at <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com</a></li>
-      <li>Click "Billing" or "Make a Payment"</li>
-      <li>Enter payment amount and choose payment method</li>
-      <li>Debit card, credit card, or bank account accepted</li>
-      <li>Instant posting — receive confirmation immediately</li>
-    </ul>
-
-    <h3>3. Mobile App Payment</h3>
-    <p>The Progressive app makes paying bills convenient on-the-go:</p>
-    <ul class="methods-list">
-      <li>Download Progressive app (iOS or Android)</li>
-      <li>Log in with fingerprint or Face ID for security</li>
-      <li>Tap "Pay Bill" and enter payment details</li>
-      <li>View payment history and digital ID card</li>
-      <li>Update payment methods anytime</li>
-    </ul>
-
-    <h3>4. Phone Payment (Assisted Payment)</h3>
-    <p>Prefer talking to someone? Call Progressive's billing support:</p>
-    <ul class="methods-list">
-      <li><strong>Call 1(888)620-0950</strong> for phone payment assistance</li>
-      <li>Have your policy number ready</li>
-      <li>Follow IVR prompts or speak to a representative</li>
-      <li>Provide your credit card or bank account details</li>
-      <li>Receive confirmation number — save it for your records</li>
-    </ul>
-
-    <h3>5. Set Up AutoPay (Automatic Recurring Payments)</h3>
-    <p>Never miss a payment with Progressive AutoPay:</p>
-    <ul class="methods-list">
-      <li>Log into your Progressive account</li>
-      <li>Select "Manage Payment Methods" or "AutoPay Settings"</li>
-      <li>Choose payment date and payment method (card or bank)</li>
-      <li>Enable automatic recurring payments</li>
-      <li>AutoPay eliminates late fees and policy lapses</li>
-    </ul>
-
-    <h3>6. Mail Payment by Check</h3>
-    <p>Traditional mail payment is still available:</p>
-    <ul class="methods-list">
-      <li>Look for the mailing address on your Progressive bill</li>
-      <li>Write your policy number on the check</li>
-      <li>Mail your check — processing takes 5–10 business days</li>
-      <li>Post-mark date is when payment is recorded</li>
-      <li>Keep a copy of your check for records</li>
-    </ul>
-
-    <h3>7. Digital Wallet Payments</h3>
-    <p>Some customers can use digital payment methods:</p>
-    <ul class="methods-list">
-      <li>Apple Pay — available on Progressive.com and app</li>
-      <li>Google Pay — supported on mobile app</li>
-      <li>PayPal — available at checkout</li>
-      <li>Look for these options on your payment screen</li>
-    </ul>
-
-    <div class="info-box">
-      <strong>Payment Method Comparison:</strong> Online, app, phone, and guest payments post instantly. AutoPay processes on your scheduled date. Bank transfers take 1–3 business days. Mail takes 5–10+ days. For urgent payments, use online or phone at <strong>1(888)620-0950</strong>.
+    <h3>Payment Method 1: Pay Progressive Online Without Login (Guest Payment)</h3>
+    <p><strong>What is guest payment?</strong> Guest payment allows you to pay your Progressive bill without logging into your account. Perfect if you forgot your password or prefer not to log in. Fastest process.</p>
+    <p><strong>Who should use this:</strong> Users who want quick payment without account login, anyone with forgotten passwords, first-time payers.</p>
+    
+    <div class="step-guide">
+      <h4>How to pay Progressive without logging in:</h4>
+      <ol>
+        <li>Visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> homepage</li>
+        <li>Look for "Pay Without Logging In" or "Quick Pay" link (usually top banner)</li>
+        <li>Click on guest payment option</li>
+        <li>Enter your policy number (found on your bill)</li>
+        <li>Enter your ZIP code (5 digits)</li>
+        <li>Enter your last name exactly as on policy</li>
+        <li>Click "Verify" or "Find My Account"</li>
+        <li>Your account information will appear</li>
+        <li>Choose your payment method (credit card, debit, or bank account)</li>
+        <li>Enter payment method details securely</li>
+        <li>Select payment amount (full or partial)</li>
+        <li>Review payment information for accuracy</li>
+        <li>Click "Confirm Payment" or "Submit"</li>
+        <li>Payment processes immediately</li>
+        <li>Save confirmation number for your records</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Takes under 2 minutes!</strong> Payment posts instantly. No account creation needed. Your financial information is encrypted and protected.</p>
     </div>
+
+    <p><strong>Still need help?</strong> Call 1(888)620-0950 for guest payment assistance.</p>
+
+    <h3>Payment Method 2: One-Time Payment via Your Online Account</h3>
+    <p><strong>What is a one-time payment?</strong> A one-time payment is a single transaction where you pay your bill from your logged-in account. Not recurring. Full control over when and how much you pay.</p>
+    <p><strong>Who should use this:</strong> Account holders, anyone wanting full account access, users with login credentials.</p>
+    
+    <div class="step-guide">
+      <h4>Step-by-step: Pay one-time online with account login:</h4>
+      <ol>
+        <li>Open web browser on desktop or mobile device</li>
+        <li>Go to <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com</a></li>
+        <li>Click "Log In" button (top-right of page)</li>
+        <li>Enter your username or email address</li>
+        <li>Enter your password</li>
+        <li>Click "Log In" to access your account</li>
+        <li>You'll see your dashboard with policy information</li>
+        <li>Look for "Billing" tab or "Make a Payment" button</li>
+        <li>Click on it to access payment options</li>
+        <li>Select the policy you want to pay for</li>
+        <li>Review your current bill amount and due date</li>
+        <li>Enter the amount you want to pay</li>
+        <li>Choose your payment method (credit card, debit card, or bank account)</li>
+        <li>If new payment method: enter card details or bank info</li>
+        <li>If saved payment method: select from dropdown list</li>
+        <li>Review all payment details on confirmation screen</li>
+        <li>Click "Submit Payment" or "Confirm"</li>
+        <li>You'll see "Payment Successful" confirmation</li>
+        <li>Copy or print your confirmation number</li>
+        <li>You'll receive confirmation email within minutes</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Payment posts immediately!</strong> You can make multiple one-time payments per billing period if needed. No recurring charges.</p>
+    </div>
+
+    <p><strong>Payment not working online?</strong> Call 1(888)620-0950 for troubleshooting.</p>
+
+    <h3>Payment Method 3: Mobile App Payment (iOS & Android)</h3>
+    <p><strong>What is app payment?</strong> Use the official Progressive mobile app to pay your bill. Offers fingerprint/Face ID login for security. Manage your account on-the-go anytime.</p>
+    <p><strong>Who should use this:</strong> Mobile-first users, anyone wanting app convenience, users with saved payment methods.</p>
+    
+    <div class="step-guide">
+      <h4>How to pay using Progressive mobile app:</h4>
+      <ol>
+        <li>Download Progressive app from App Store (iOS) or Google Play (Android)</li>
+        <li>Install app on your phone or tablet</li>
+        <li>Open the app</li>
+        <li>If first time: Create account with email and password</li>
+        <li>If returning user: Log in with credentials</li>
+        <li>Enable optional fingerprint or Face ID for faster login</li>
+        <li>You'll see your dashboard with active policies</li>
+        <li>Tap on the policy you want to pay</li>
+        <li>Look for "Pay Bill" or "Make a Payment" button</li>
+        <li>Tap to open payment screen</li>
+        <li>Review your bill amount and due date</li>
+        <li>Enter payment amount (full or partial)</li>
+        <li>Select payment method from saved options</li>
+        <li>Or add new payment method (card or bank)</li>
+        <li>Enter CVV if required for card payment</li>
+        <li>Review payment details on confirmation</li>
+        <li>Tap "Confirm Payment" or "Submit"</li>
+        <li>Payment processes instantly</li>
+        <li>You'll see confirmation on screen</li>
+        <li>Screenshot confirmation for your records</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Convenient & secure!</strong> App payments post immediately. You can also view payment history, update ID cards, and manage AutoPay in the app.</p>
+    </div>
+
+    <h3>Payment Method 4: Phone Payment (Automated or With Representative)</h3>
+    <p><strong>What is phone payment?</strong> Call Progressive's billing number to make a payment using automated system or by speaking to a representative. Always available. Best for urgent situations.</p>
+    <p><strong>Who should use this:</strong> Anyone uncomfortable with online payments, users needing payment confirmation from person, anyone with urgent payment needs.</p>
+    
+    <div class="step-guide">
+      <h4>Progressive phone payment instructions (1(888)620-0950):</h4>
+      <ol>
+        <li>Pick up phone or use mobile device</li>
+        <li>Dial 1(888)620-0950 (toll-free)</li>
+        <li>Listen to greeting and menu options</li>
+        <li>Press the number for "Make a Payment" (usually 1 or 2)</li>
+        <li>Choose automated system or press for representative</li>
+        <li>You'll be prompted to enter your policy number</li>
+        <li>Enter your 7-digit policy number using keypad</li>
+        <li>System asks for verification - enter your ZIP code</li>
+        <li>Your account will be located</li>
+        <li>System displays your bill information</li>
+        <li>Confirm your billing amount when asked</li>
+        <li>System asks which payment method to use</li>
+        <li>Select option for credit card, debit card, or bank account</li>
+        <li>Enter your card number or bank routing/account number</li>
+        <li>Verify card expiration date if credit/debit card</li>
+        <li>System asks for payment amount to submit</li>
+        <li>Enter amount using your phone keypad</li>
+        <li>Confirm amount when system repeats it back</li>
+        <li>System processes payment (usually 10-15 seconds)</li>
+        <li>You'll hear confirmation that payment was accepted</li>
+        <li>Listen carefully for your confirmation number</li>
+        <li>Write down the confirmation number immediately</li>
+        <li>Option to repeat confirmation or end call</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Phone payment posts immediately!</strong> Confirmation number protects you if any issues arise. Keep it for 30 days. Available 24/7 for payment assistance.</p>
+    </div>
+
+    <div class="callbox">
+      <strong>📞 Phone Payment Support Line:</strong><br>
+      <a href="tel:+18886200950" style="font-size: 1.3em; font-weight: 900; color: var(--danger);">1(888)620-0950</a><br>
+      <p style="margin-top: 1em; font-size: 0.95em;">Available 24 hours a day, 7 days a week for progressive bill payments.</p>
+    </div>
+
+    <h3>Payment Method 5: Set Up AutoPay (Automatic Recurring Payments)</h3>
+    <p><strong>What is AutoPay?</strong> AutoPay automatically charges your payment method on your billing date each month. Never miss a payment. Helps avoid policy cancellation and late fees.</p>
+    <p><strong>Who should use this:</strong> Anyone wanting automatic payments, users who frequently forget payment dates, anyone wanting peace of mind.</p>
+    
+    <div class="step-guide">
+      <h4>How to set up AutoPay with Progressive:</h4>
+      <ol>
+        <li>Log into your Progressive account at progressive.com</li>
+        <li>Go to "Account" or "Settings" section</li>
+        <li>Look for "Payment Methods" or "Billing Settings"</li>
+        <li>Find "AutoPay" or "Automatic Payments" option</li>
+        <li>Click "Set Up AutoPay" or "Enable AutoPay" button</li>
+        <li>Choose which policy to set AutoPay for</li>
+        <li>System shows your current billing information</li>
+        <li>Choose your payment frequency (usually monthly)</li>
+        <li>Select your payment date (day of month you want charged)</li>
+        <li>Choose payment method (credit card, debit card, or bank account)</li>
+        <li>If new payment method: enter all required information</li>
+        <li>If saved payment method: select from list</li>
+        <li>Review AutoPay details on confirmation screen</li>
+        <li>Confirm you want to enable AutoPay</li>
+        <li>System will send you confirmation email</li>
+        <li>First payment will process on your scheduled date</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ AutoPay benefits:</strong> Never miss payments, avoid late fees, prevent policy lapses, peace of mind. You can modify or cancel AutoPay anytime from your account.</p>
+    </div>
+
+    <h3>Payment Method 6: Mail Payment by Check</h3>
+    <p><strong>What is mail payment?</strong> Traditional check payment sent by mail. Slowest method but still accepted. Takes 5-10 days to post. Good for those without online access.</p>
+    
+    <div class="step-guide">
+      <h4>How to pay Progressive by mail with check:</h4>
+      <ol>
+        <li>Locate your Progressive bill (paper bill or print PDF)</li>
+        <li>Find the mailing address printed on the back or bottom of bill</li>
+        <li>Write a check in the full amount due</li>
+        <li>Write the check number in your checkbook</li>
+        <li>Make check payable to "Progressive" or specific payee listed</li>
+        <li>Do NOT postdate the check</li>
+        <li>Look at the back of your bill for specific mailing address</li>
+        <li>Write the address on your envelope</li>
+        <li>Include your policy number on the check memo line</li>
+        <li>Put check and bill stub in envelope (if bill is multi-part)</li>
+        <li>Seal the envelope</li>
+        <li>Add postage stamp (check current postal rates)</li>
+        <li>Drop mail in postal mailbox or post office</li>
+        <li>Wait 5-10 business days for delivery and processing</li>
+        <li>Payment posts to your account after Progressive receives check</li>
+      </ol>
+      <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Important:</strong> Mail payments are recorded by postmark date, not delivery date. Keep copy of check for your records. This is the slowest payment method.</p>
+    </div>
+
+    <h3>Payment Method 7: Digital Wallet Payments (Apple Pay, Google Pay, PayPal)</h3>
+    <p><strong>What is wallet payment?</strong> Use your digital wallet (Apple Pay, Google Pay) or PayPal to pay Progressive. When available, very convenient and quick. Added security layer.</p>
+    
+    <div class="icon-line">
+      <i class="fa-brands fa-apple" aria-hidden="true"></i>
+      <span><strong>Apple Pay:</strong> If supported on Progressive.com or app, look for Apple Pay logo at checkout</span>
+    </div>
+    
+    <div class="icon-line">
+      <i class="fa-brands fa-google" aria-hidden="true"></i>
+      <span><strong>Google Pay:</strong> Available on Progressive mobile app during payment screen in some regions</span>
+    </div>
+    
+    <div class="icon-line">
+      <i class="fa-brands fa-paypal" aria-hidden="true"></i>
+      <span><strong>PayPal:</strong> PayPal option appears on some Progressive payment screens</span>
+    </div>
+
+    <p style="margin-top: 1.5em;"><strong>How to use wallet payment:</strong> When making a payment online or in app, look for the wallet payment option at checkout. Click the wallet icon, choose your saved payment method, and confirm. Payment posts immediately like card payments.</p>
   </section>
 
   <!-- How-To Pay Section -->
   <section class="card" id="how-to-pay">
-    <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> How to Pay Your Progressive Bill — Step-by-Step Guides</h2>
-    <p>Whether you're paying online, by phone, or without login, here are detailed instructions for every payment method:</p>
+    <h2><i class="fa-solid fa-book-open" aria-hidden="true"></i> Complete How-To Guides & Step-By-Step Instructions</h2>
+    <p>Detailed step-by-step guides for every Progressive payment method. Choose your payment method below:</p>
 
     <div class="collapse">
 
       <div class="collapse-item open">
         <div class="collapse-title">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How to Pay Progressive Online (Step-by-Step)</span>
+          <span>Step-by-Step: How to Pay Progressive Bill Online (Login Method)</span>
         </div>
         <div class="collapse-content">
-          <h4>Steps to pay your Progressive bill online:</h4>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com</a> in your web browser</li>
-            <li>Click "Log In" at the top-right of the page</li>
-            <li>Enter your username/email and password</li>
-            <li>Select your policy from the dashboard</li>
-            <li>Click "Billing" tab or "Make a Payment"</li>
-            <li>Enter the amount you want to pay</li>
-            <li>Choose your payment method (credit card, debit, or bank account)</li>
-            <li>Review payment details for accuracy</li>
-            <li>Click "Submit Payment"</li>
-            <li>Save or print your confirmation number</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>Payment posts immediately.</strong> If you have questions, call 1(888)620-0950.</p>
-        </div>
-      </div>
+          <p><strong>Before you start:</strong> Have your Progressive username/email and password ready. If you forgot password, you can reset it on the login page.</p>
+          
+          <div class="two-column">
+            <div class="column">
+              <h4>Steps 1-8</h4>
+              <ol>
+                <li>Go to progressive.com in your web browser</li>
+                <li>Click "Log In" button in top-right corner</li>
+                <li>Enter your email or username you use with Progressive</li>
+                <li>Enter your password</li>
+                <li>If you have 2FA enabled, complete the verification</li>
+                <li>Click the "Log In" button</li>
+                <li>You'll be taken to your account dashboard</li>
+                <li>Look for your policy information</li>
+              </ol>
+            </div>
+            <div class="column">
+              <h4>Steps 9-15</h4>
+              <ol start="9">
+                <li>Find and click "Billing" or "Make a Payment" tab</li>
+                <li>Select the policy you want to pay for</li>
+                <li>View your current bill amount and due date</li>
+                <li>Enter the amount to pay (full or partial)</li>
+                <li>Choose payment method from the list</li>
+                <li>Click "Submit" or "Continue to Payment"</li>
+                <li>Save your confirmation number displayed</li>
+              </ol>
+            </div>
+          </div>
 
-      <div class="collapse-item open">
-        <div class="collapse-title">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How to Pay Progressive Without Login (Guest Payment)</span>
-        </div>
-        <div class="collapse-content">
-          <h4>Steps to make a guest payment without logging in:</h4>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Go to <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com</a></li>
-            <li>Look for "Pay Without Logging In" or "Quick Pay" link</li>
-            <li>Select "Guest Payment" or "Quick Pay as Guest"</li>
-            <li>Enter your policy number</li>
-            <li>Enter your ZIP code (5 digits)</li>
-            <li>Enter your last name</li>
-            <li>Click "Verify" or "Next"</li>
-            <li>Choose your payment method (card or bank)</li>
-            <li>Enter payment details and amount</li>
-            <li>Review and confirm payment</li>
-            <li>Receive instant confirmation</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>Takes under 2 minutes!</strong> No login required. Payment posts instantly. Save your confirmation number.</p>
-        </div>
-      </div>
-
-      <div class="collapse-item open">
-        <div class="collapse-title">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How to Make a One-Time Payment to Progressive</span>
-        </div>
-        <div class="collapse-content">
-          <h4>What is a one-time payment?</h4>
-          <p>A one-time payment is a single transaction where you pay part or all of your Progressive bill without setting up recurring AutoPay. Here's how:</p>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Choose your payment method: online, app, phone, or guest</li>
-            <li>Enter your policy number or account info</li>
-            <li>Select "One-Time Payment" (not AutoPay)</li>
-            <li>Enter the amount you want to pay</li>
-            <li>Provide payment method details</li>
-            <li>Submit payment</li>
-            <li>Receive instant confirmation</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>One-time payments post immediately</strong> for online, phone, and guest payments. Bank transfers take 1–3 business days. You can make multiple one-time payments per billing period.</p>
-        </div>
-      </div>
-
-      <div class="collapse-item open">
-        <div class="collapse-title">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How to Pay Progressive by Phone (1(888)620-0950)</span>
-        </div>
-        <div class="collapse-content">
-          <h4>Phone payment instructions:</h4>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Call <strong>1(888)620-0950</strong></li>
-            <li>Listen to the IVR menu options</li>
-            <li>Select "Make a Payment" or press the corresponding number</li>
-            <li>Enter your policy number when prompted</li>
-            <li>Enter your ZIP code</li>
-            <li>Choose to speak to a representative or use automated system</li>
-            <li>Select your payment method (credit, debit, or bank account)</li>
-            <li>Enter payment method details</li>
-            <li>Enter the amount to pay</li>
-            <li>Review details and confirm payment</li>
-            <li>Write down or save your confirmation number</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>Phone payments process immediately.</strong> Business hours: typically 7am–10pm. Call 1(888)620-0950 even if you're outside business hours.</p>
+          <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Payment posts in minutes!</strong> You'll receive confirmation email. Save confirmation number for 30 days.</p>
         </div>
       </div>
 
       <div class="collapse-item">
         <div class="collapse-title">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How to Set Up AutoPay for Progressive</span>
+          <span>Step-by-Step: How to Pay Progressive Without Logging In</span>
         </div>
         <div class="collapse-content">
-          <h4>AutoPay setup steps:</h4>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Log into your Progressive account</li>
-            <li>Go to "Billing" or "Account Settings"</li>
-            <li>Select "Payment Methods" or "AutoPay"</li>
-            <li>Click "Set Up AutoPay" or "Enable AutoPay"</li>
-            <li>Choose your payment date (monthly or quarterly)</li>
-            <li>Select your payment method (credit card, debit, or bank)</li>
-            <li>Verify payment details</li>
-            <li>Click "Confirm" or "Enable AutoPay"</li>
-            <li>You'll receive a confirmation email</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>AutoPay Benefits:</strong> Automatic payments never miss due dates, prevent policy lapses, and may help you avoid late fees.</p>
+          <p><strong>Perfect for:</strong> Forgotten passwords, first-time payers, anyone wanting quick payment without account login.</p>
+          
+          <div class="two-column">
+            <div class="column">
+              <h4>Steps 1-8</h4>
+              <ol>
+                <li>Open progressive.com homepage</li>
+                <li>Look at top of page for "Pay Without Logging In"</li>
+                <li>Or look for "Quick Pay" link</li>
+                <li>Click on guest payment option</li>
+                <li>Page will show form asking for verification info</li>
+                <li>Enter your policy number (find on bill)</li>
+                <li>Enter your 5-digit ZIP code</li>
+                <li>Enter your last name (match policy exactly)</li>
+              </ol>
+            </div>
+            <div class="column">
+              <h4>Steps 9-15</h4>
+              <ol start="9">
+                <li>Click "Verify" or "Find Account"</li>
+                <li>Your account information displays</li>
+                <li>Choose payment method (card or bank)</li>
+                <li>Enter payment method details</li>
+                <li>Select payment amount</li>
+                <li>Review all information for accuracy</li>
+                <li>Click "Confirm Payment"</li>
+              </ol>
+            </div>
+          </div>
+
+          <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Under 2 minutes to complete!</strong> No account login needed. Fully secure. Payment posts immediately.</p>
+
+          <p style="margin-top: 1.5em;"><strong>Need help with guest payment?</strong> Call 1(888)620-0950 for step-by-step phone assistance.</p>
         </div>
       </div>
 
       <div class="collapse-item">
         <div class="collapse-title">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>What If My Progressive Payment Hasn't Posted?</span>
+          <span>Step-by-Step: How to Make a One-Time Payment</span>
         </div>
         <div class="collapse-content">
-          <h4>Troubleshooting delayed payments:</h4>
-          <p style="margin-bottom: 1em;"><strong>When should my payment post?</strong></p>
-          <ul style="margin-left: 1.5em; margin-bottom: 1em;">
+          <p><strong>What is one-time payment?</strong> A single payment transaction that doesn't set up recurring charges. You have full control over amount and timing.</p>
+          
+          <div class="step-guide">
+            <ol>
+              <li><strong>Choose your payment method:</strong> Online (login), guest (no login), app, or phone</li>
+              <li><strong>Access payment portal:</strong> Go to progressive.com or open Progressive app</li>
+              <li><strong>Verify your account:</strong> Log in or use guest payment information</li>
+              <li><strong>Select your policy:</strong> Choose which bill to pay from list</li>
+              <li><strong>View bill details:</strong> Confirm amount due and due date</li>
+              <li><strong>Choose payment type:</strong> Select "One-Time Payment" (NOT AutoPay)</li>
+              <li><strong>Enter amount:</strong> You can pay full amount or partial amount</li>
+              <li><strong>Select payment method:</strong> Credit card, debit card, bank account, or digital wallet</li>
+              <li><strong>Provide payment details:</strong> Enter card number or bank info</li>
+              <li><strong>Verify information:</strong> Check all details for accuracy</li>
+              <li><strong>Submit payment:</strong> Click "Confirm" or "Submit Payment"</li>
+              <li><strong>Receive confirmation:</strong> You'll see confirmation on screen immediately</li>
+              <li><strong>Save confirmation number:</strong> Write it down or screenshot it</li>
+              <li><strong>Check email:</strong> Confirmation email arrives within minutes</li>
+              <li><strong>No recurring charges:</strong> One-time payment is complete. No AutoPay set up.</li>
+            </ol>
+          </div>
+
+          <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Key difference:</strong> One-time payment is a single transaction. You can make multiple one-time payments per month if needed. Not recurring like AutoPay.</p>
+        </div>
+      </div>
+
+      <div class="collapse-item">
+        <div class="collapse-title">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <span>Step-by-Step: How to Pay Progressive by Phone (1(888)620-0950)</span>
+        </div>
+        <div class="collapse-content">
+          <p><strong>When to use:</strong> Any time, especially for urgent payments or if online is not working. Always available 24/7.</p>
+          
+          <div class="callbox">
+            <strong>📞 Phone Payment Number:</strong><br>
+            <a href="tel:+18886200950" style="font-size: 1.2em; font-weight: 900; color: var(--danger);">1(888)620-0950</a>
+          </div>
+
+          <div class="step-guide">
+            <ol>
+              <li><strong>Dial the number:</strong> Call 1(888)620-0950 from any phone (toll-free)</li>
+              <li><strong>Listen to greeting:</strong> Progressive automated greeting plays</li>
+              <li><strong>Select payment option:</strong> Press the number for "Make a Payment"</li>
+              <li><strong>Choose your path:</strong> Automated system OR press 0 for representative</li>
+              <li><strong>When prompted, enter policy number:</strong> Use keypad, enter your policy number</li>
+              <li><strong>Enter ZIP code:</strong> Press your 5-digit ZIP code on keypad</li>
+              <li><strong>Confirm account info:</strong> System displays your account details</li>
+              <li><strong>Confirm billing amount:</strong> Press 1 to confirm or 2 to correct</li>
+              <li><strong>Select payment method:</strong> Press 1 for card or 2 for bank account</li>
+              <li><strong>Enter payment details:</strong> Enter card number or bank routing number</li>
+              <li><strong>Verify card expiration:</strong> If credit/debit, enter expiration date</li>
+              <li><strong>Enter payment amount:</strong> How much do you want to pay? Enter on keypad</li>
+              <li><strong>Confirm payment amount:</strong> System repeats it back - press 1 to confirm</li>
+              <li><strong>Process payment:</strong> System processes payment (usually 10-15 seconds)</li>
+              <li><strong>Listen for confirmation number:</strong> Very important - write this down</li>
+              <li><strong>Save confirmation number:</strong> Keep this number for your records</li>
+            </ol>
+          </div>
+
+          <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Phone payment posts immediately!</strong> Your confirmation number protects you. If any issues arise, provide this number. Available 24/7, every day.</p>
+        </div>
+      </div>
+
+      <div class="collapse-item">
+        <div class="collapse-title">
+          <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          <span>Troubleshooting: What If Your Payment Hasn't Posted?</span>
+        </div>
+        <div class="collapse-content">
+          <p><strong>When should payments post?</strong></p>
+          <ul style="margin-left: 1.5em; margin: 1em 0;">
             <li><strong>Online, app, phone, guest payments:</strong> Post immediately (within minutes)</li>
-            <li><strong>Bank transfers (ACH):</strong> 1–3 business days</li>
-            <li><strong>Mail/check:</strong> 5–10 business days from postmark</li>
+            <li><strong>Bank transfers (ACH):</strong> 1-3 business days</li>
+            <li><strong>Mail/check:</strong> 5-10 business days from postmark</li>
           </ul>
-          <p style="margin-bottom: 1em;"><strong>If your payment hasn't posted after the above timeframes:</strong></p>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li>Check your confirmation number (from email or receipt)</li>
-            <li>Log into your Progressive account to verify payment</li>
-            <li>Check your bank account to confirm funds were deducted</li>
-            <li>Wait 24 hours to see if payment appears</li>
-            <li>Call 1(888)620-0950 with your confirmation number if still not posted</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>Keep your confirmation number!</strong> It helps Progressive locate your payment instantly if there's any delay.</p>
-        </div>
-      </div>
 
-      <div class="collapse-item">
-        <div class="collapse-title">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>What If My Progressive Policy Is Overdue or Past Due?</span>
-        </div>
-        <div class="collapse-content">
-          <h4>If your Progressive bill is overdue:</h4>
-          <ol style="margin-left: 1.5em; line-height: 1.8;">
-            <li><strong>Act immediately.</strong> Pay online, app, or call 1(888)620-0950</li>
-            <li>Make a payment using any method (online/phone work fastest)</li>
-            <li>Your policy has a grace period (usually 10–15 days)</li>
-            <li>If within grace period, your policy stays active</li>
-            <li>Pay the full amount due plus any late fees</li>
-            <li>Call 1(888)620-0950 to discuss payment options or extensions</li>
-          </ol>
-          <p style="margin-top: 1em; color: var(--text-light);"><strong>Don't wait!</strong> Policy cancellation happens after grace period ends. Once canceled, reinstatement requires new underwriting and may not be guaranteed.</p>
+          <p><strong>If your payment hasn't posted after the above timeframes, follow these steps:</strong></p>
+          
+          <div class="step-guide">
+            <ol>
+              <li>Find your confirmation number (from email, receipt, or phone call)</li>
+              <li>Log into your Progressive account</li>
+              <li>Go to "Billing" section and look for payment history</li>
+              <li>Verify payment appears in your account activity</li>
+              <li>Check your bank account to confirm funds were deducted</li>
+              <li>Wait 24 hours in case of processing delay</li>
+              <li>Check account again after 24 hours</li>
+              <li>If still not posted, prepare your confirmation number</li>
+              <li>Call 1(888)620-0950 with your confirmation number</li>
+              <li>Explain to representative that payment hasn't posted</li>
+              <li>Provide confirmation number when asked</li>
+              <li>Representative will look up your payment</li>
+              <li>They can locate payment and confirm posting date</li>
+              <li>If issue found, they can help resolve</li>
+            </ol>
+          </div>
+
+          <p style="margin-top: 1.5em; color: var(--text-light);"><strong>✓ Confirmation number is key!</strong> It allows Progressive to locate your payment instantly. Save it for 30 days. Call 1(888)620-0950 for assistance.</p>
         </div>
       </div>
 
@@ -946,17 +1246,17 @@
   <!-- FAQs Section -->
   <section class="card" id="faqs">
     <h2><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Frequently Asked Questions About Progressive Bill Pay</h2>
-    <p>Find answers to the most common Progressive payment questions:</p>
+    <p>Find quick answers to the most common Progressive payment questions:</p>
 
     <div class="collapse">
 
       <div class="collapse-item">
         <div class="collapse-title">
           <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>Can I pay my Progressive bill online without an account?</span>
+          <span>Can I pay my Progressive bill online without an account or login?</span>
         </div>
         <div class="collapse-content">
-          Yes! Use Progressive's "Pay Without Logging In" feature. Enter your policy number, ZIP code, and last name. You can make a secure payment in under 2 minutes without creating an account. Alternatively, call 1(888)620-0950 for phone payment assistance.
+          Yes! Use Progressive's "Pay Without Logging In" feature on their homepage. Enter your policy number, ZIP code, and last name. You can make a secure payment in under 2 minutes without creating an account or logging in. Alternatively, call 1(888)620-0950 for phone payment assistance as a guest.
         </div>
       </div>
 
@@ -966,8 +1266,8 @@
           <span>What's the difference between one-time payment and AutoPay?</span>
         </div>
         <div class="collapse-content">
-          <strong>One-Time Payment:</strong> A single payment transaction. You pay once and are not charged again unless you submit another payment.<br><br>
-          <strong>AutoPay:</strong> Automatic recurring payments on a set schedule (usually monthly). Once enabled, Progressive automatically charges your payment method on your billing date each month. You can cancel AutoPay anytime.
+          <strong>One-Time Payment:</strong> A single payment transaction. You pay once and are not charged again unless you submit another payment manually. Full control over timing and amount.<br><br>
+          <strong>AutoPay:</strong> Automatic recurring payments on a set schedule (usually monthly). Once enabled, Progressive automatically charges your payment method on your billing date each month. You must manually cancel to stop AutoPay.
         </div>
       </div>
 
@@ -977,7 +1277,7 @@
           <span>Does Progressive charge fees for online bill payment?</span>
         </div>
         <div class="collapse-content">
-          No. Progressive does not charge fees for online, app, phone, or bank (ACH) payments. Guest payments are also free. Mail payments are free. Late payments may incur late fees depending on your policy terms. Check your bill for specific fee details.
+          No. Progressive does not charge fees for online, app, phone, or bank (ACH) payments. Guest payments are also free. Mail payments are free. Late payments may incur late fees depending on your policy terms and state. Check your bill for specific fee details or call 1(888)620-0950.
         </div>
       </div>
 
@@ -988,9 +1288,9 @@
         </div>
         <div class="collapse-content">
           <strong>Online, app, phone, or guest payments:</strong> Post immediately (within minutes)<br>
-          <strong>Bank transfer (ACH):</strong> 1–3 business days<br>
-          <strong>Mail (check):</strong> 5–10+ business days from postmark<br>
-          Always save your confirmation number. If a payment hasn't posted within the timeframe, call 1(888)620-0950.
+          <strong>Bank transfer (ACH):</strong> 1-3 business days<br>
+          <strong>Mail (check):</strong> 5-10+ business days from postmark<br><br>
+          Always save your confirmation number. If a payment hasn't posted within the timeframe, call 1(888)620-0950 with your confirmation number.
         </div>
       </div>
 
@@ -1000,7 +1300,7 @@
           <span>What is Progressive's grace period for late payments?</span>
         </div>
         <div class="collapse-content">
-          Most Progressive policies have a grace period of 10–15 days after your due date. During this time, your policy remains active even if your payment is late. However, your policy can be canceled after the grace period ends. Call 1(888)620-0950 before your due date if you need to discuss payment options or possible extensions.
+          Most Progressive policies have a grace period of 10-15 days after your due date. During this time, your policy remains active even if your payment is late. However, your policy can be canceled after the grace period ends. Call 1(888)620-0950 before your due date if you need to discuss payment options or possible extensions.
         </div>
       </div>
 
@@ -1010,7 +1310,7 @@
           <span>Can I make multiple payments in one billing period?</span>
         </div>
         <div class="collapse-content">
-          Yes! You can make as many one-time payments as you need during your billing period. This is helpful if you want to pay your bill in installments or make a partial payment now and a full payment later. Each payment is processed separately.
+          Yes! You can make as many one-time payments as you need during your billing period. This is helpful if you want to pay your bill in installments or make a partial payment now and a full payment later. Each payment is processed separately and posts individually.
         </div>
       </div>
 
@@ -1020,7 +1320,7 @@
           <span>What payment methods does Progressive accept?</span>
         </div>
         <div class="collapse-content">
-          Progressive accepts: credit cards, debit cards, bank accounts (ACH/checking/savings), PayPal, Apple Pay, Google Pay, checks, money orders, and eChecks. Choose the method that works best for you. All payment methods are secure and encrypted.
+          Progressive accepts: credit cards, debit cards, bank accounts (ACH from checking or savings), PayPal, Apple Pay, Google Pay, checks by mail, money orders, and eChecks. Choose the method that works best for you. All payment methods are secure and encrypted to protect your financial information.
         </div>
       </div>
 
@@ -1030,89 +1330,70 @@
           <span>Can I update my payment method after setting up AutoPay?</span>
         </div>
         <div class="collapse-content">
-          Yes. Log into your Progressive account, go to "Payment Methods" or "AutoPay Settings", and update your card or bank account information anytime. Changes take effect on your next scheduled payment date.
-        </div>
-      </div>
-
-      <div class="collapse-item">
-        <div class="collapse-title">
-          <i class="fa fa-chevron-right" aria-hidden="true"></i>
-          <span>How do I cancel or stop AutoPay with Progressive?</span>
-        </div>
-        <div class="collapse-content">
-          Log into your Progressive account, go to "Payment Methods" or "AutoPay Settings", and toggle AutoPay off or select "Disable AutoPay". You can also call 1(888)620-0950 to cancel AutoPay over the phone. Changes take effect immediately.
+          Yes. Log into your Progressive account, go to "Payment Methods" or "AutoPay Settings", and update your card or bank account information anytime. Changes take effect on your next scheduled payment date. You can also call 1(888)620-0950 to update payment methods over the phone.
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- Security & Trust Section -->
+  <!-- Security Section -->
   <section class="card" id="security">
-    <h2><i class="fa-solid fa-lock" aria-hidden="true"></i> Payment Security & Trust – How Progressive Protects Your Information</h2>
-    <p>Your payment security and financial privacy are critical. Here's how Progressive keeps your information safe:</p>
+    <h2><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Payment Security & Fraud Protection</h2>
+    <p>Your payment security and financial privacy are our top priority. Here's how Progressive protects your information:</p>
 
-    <h3>Security Features</h3>
+    <h3>Security Features Progressive Uses</h3>
     <ul class="methods-list">
-      <li><strong>HTTPS Encryption:</strong> All payments are encrypted with SSL/TLS technology (look for the 🔒 lock icon in your browser)</li>
+      <li><strong>HTTPS Encryption:</strong> All payments encrypted with SSL/TLS technology (look for 🔒 lock icon in browser)</li>
       <li><strong>PCI Compliance:</strong> Progressive follows Payment Card Industry (PCI) data security standards</li>
       <li><strong>Fraud Detection:</strong> Advanced monitoring systems detect and prevent fraudulent transactions</li>
       <li><strong>Two-Factor Authentication:</strong> Optional 2FA available for extra account security</li>
-      <li><strong>Secure Login:</strong> Fingerprint, Face ID, and password protection available</li>
+      <li><strong>Secure Login:</strong> Fingerprint, Face ID, and password protection on app</li>
     </ul>
 
     <h3>Best Practices for Safe Progressive Payments</h3>
     <ul class="methods-list">
-      <li>Always pay through official Progressive.com or the Progressive app</li>
+      <li>Always pay through official <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> or Progressive mobile app</li>
       <li>Never pay via unsolicited links in emails or text messages</li>
       <li>Beware of phishing scams — verify sender email addresses</li>
       <li>Use strong, unique passwords for your Progressive account</li>
       <li>Save your payment confirmation number for your records</li>
       <li>Regularly review your statement for unauthorized charges</li>
-      <li>Only call the number on your Progressive bill or use official Progressive.com</li>
-    </ul>
-
-    <h3>What to Do if You See Suspicious Activity</h3>
-    <ul class="methods-list">
-      <li>If you notice unauthorized charges, contact your bank immediately</li>
-      <li>Call Progressive at 1(888)620-0950 to report the issue</li>
-      <li>File a report with the FTC at <a href="https://reportfraud.ftc.gov" target="_blank" rel="noopener noreferrer">reportfraud.ftc.gov</a> if you suspect fraud</li>
-      <li>Change your Progressive password immediately if you suspect account compromise</li>
-      <li>Monitor your credit reports for identity theft</li>
+      <li>Only call the phone number on your bill or official Progressive channels</li>
     </ul>
 
     <div class="security-tip">
       <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-      <strong>Warning:</strong> Progressive will never ask for your full credit card or Social Security number via email or unsolicited phone call. Always initiate contact with Progressive directly. Missed payments may lead to policy cancellation and coverage gaps. Use official Progressive payment methods every time.
+      <strong>Security Warning:</strong> Progressive will never ask for your full credit card or Social Security number via email or unsolicited phone call. Always initiate contact with Progressive directly. Missed payments may lead to policy cancellation and coverage gaps. Use official Progressive payment methods every time at 1(888)620-0950 or progressive.com.
     </div>
   </section>
 
   <!-- Support Section -->
   <section class="card" id="support">
-    <h2><i class="fa-solid fa-headset" aria-hidden="true"></i> Progressive Bill Pay Support & Contact Information</h2>
-    <p>Need immediate help with your Progressive bill payment? Here's how to reach support:</p>
+    <h2><i class="fa-solid fa-headset" aria-hidden="true"></i> Get Progressive Bill Pay Support</h2>
+    <p>Need immediate help with your Progressive payment? Here's how to reach support:</p>
 
     <div class="callbox">
-      <h3 style="margin-top: 0;">📞 Progressive Billing Support Hotline</h3>
-      <p style="font-size: 1.2em; margin: 0.8em 0;"><strong>Phone:</strong> <a href="tel:+18886200950" style="font-weight: 900; color: var(--danger); text-decoration: none;">1(888)620-0950</a></p>
-      <p style="margin: 1em 0 1.5em;">Available for urgent payment assistance, late bills, payment inquiries, and account troubleshooting.</p>
+      <h3 style="margin-top: 0; font-size: 1.3em;"><i class="fa fa-phone-volume" aria-hidden="true"></i> Progressive Billing Support — 24/7</h3>
+      <p style="font-size: clamp(1.05em, 3vw, 1.2em); margin: 1em 0; font-weight: 700;"><a href="tel:+18886200950" style="color: var(--danger); text-decoration: none;">1(888)620-0950</a></p>
+      <p style="margin: 1em 0; line-height: 1.8;">Available 24 hours, 7 days a week for urgent payment assistance, late bills, payment inquiries, and account troubleshooting.</p>
       <a class="cta-btn" href="tel:+18886200950">
-        <i class="fa fa-phone-volume" aria-hidden="true"></i> Call Now for Bill Pay Help
+        <i class="fa fa-phone" aria-hidden="true"></i> Call Now: 1(888)620-0950
       </a>
     </div>
 
-    <h3>Online & App Support</h3>
+    <h3>Online Support Options</h3>
     <ul class="methods-list">
-      <li><strong>Official Website:</strong> <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> – Access your account, make payments, and find resources</li>
+      <li><strong>Official Website:</strong> <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> – Access your account, make payments, find resources</li>
       <li><strong>Quick Pay Link:</strong> <a href="https://www.progressive.com/pay/" target="_blank" rel="noopener noreferrer">Progressive.com/pay</a> – Direct link to payment portal</li>
-      <li><strong>Progressive Mobile App:</strong> Download on iOS or Android – Manage billing, pay bills, view ID cards</li>
+      <li><strong>Mobile App:</strong> Download on iOS or Android – Manage billing, pay bills, view ID cards</li>
       <li><strong>Live Chat:</strong> Available on Progressive.com during business hours</li>
-      <li><strong>FAQs & Help Center:</strong> <a href="https://www.progressive.com/help/" target="_blank" rel="noopener noreferrer">Progressive Help Center</a> – Self-service solutions and guides</li>
+      <li><strong>FAQs & Help:</strong> <a href="https://www.progressive.com/help/" target="_blank" rel="noopener noreferrer">Progressive Help Center</a> – Self-service solutions</li>
     </ul>
 
-    <h3>When to Contact Progressive Billing Support</h3>
+    <h3>When to Contact Progressive Support</h3>
     <ul class="methods-list">
-      <li>Payment not posted after 24–48 hours</li>
+      <li>Payment not posted after 24-48 hours</li>
       <li>Need to discuss a late or overdue payment</li>
       <li>Want to discuss payment plans or policy reinstatement</li>
       <li>Have questions about billing amounts or due dates</li>
@@ -1120,29 +1401,33 @@
       <li>Suspect fraudulent charges or unauthorized payments</li>
       <li>Require payment extensions or financial hardship assistance</li>
     </ul>
-
   </section>
 
   <!-- Updated Section -->
   <section class="card" id="last-updated">
-    <h3>📅 Last Updated</h3>
-    <p><strong>May 21, 2026</strong> — This guide has been reviewed and updated for current Progressive payment methods, security features, and 2026 best practices.</p>
-    <p style="font-size: 0.9em; color: var(--text-light); margin-top: 1em;">This is an independent guide for Progressive Insurance bill pay information. We are not affiliated with, endorsed by, or authorized by Progressive Insurance. For official information, always visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a>.</p>
+    <h3><i class="fa-solid fa-calendar" aria-hidden="true"></i> Last Updated & Disclaimer</h3>
+    <p><strong>Last Updated: May 21, 2026</strong></p>
+    <p>This comprehensive Progressive insurance bill pay guide has been reviewed and updated for current payment methods, security features, and 2026 best practices.</p>
+    
+    <div class="disclaimer">
+      <strong>Important Disclaimer:</strong> This is an independent, informational guide for Progressive Insurance bill payment information. We are not affiliated with, endorsed by, or authorized by Progressive Insurance Corporation or its subsidiaries. Progressive® is a registered trademark of Progressive Insurance. For official Progressive insurance services and account management, always visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer" style="color: #0033a0; font-weight: bold;">Progressive.com</a>. All payment methods are subject to Progressive's official terms and conditions. Always verify payment amounts and methods on your official Progressive bill before submitting payment. This guide is for informational purposes only.
+    </div>
   </section>
 
 </main>
 
-<a class="floating-cta" href="tel:+18886200950" aria-label="Call Progressive Billing Help - 1(888)620-0950">
+<a class="floating-cta" href="tel:+18886200950" aria-label="Call Progressive Bill Pay Help - 1(888)620-0950">
   <i class="fas fa-phone-alt" aria-hidden="true"></i> Call: 1(888)620-0950
 </a>
 
 <footer>
-  <p><strong>Progressive Insurance Bill Pay Help Guide</strong></p>
-  <p>Complete resource for Progressive insurance bill payment: online, one-time payment, without login, AutoPay, guest payment, phone support at 1(888)620-0950</p>
+  <p><strong>Progressive Insurance Bill Pay Guide 2026</strong></p>
+  <p>Complete resource for Progressive bill payment: online payment, one-time payment, without login, guest payment, AutoPay, phone support</p>
+  <p><strong>24/7 Billing Support:</strong> <a href="tel:+18886200950" style="color: #4ade80;">1(888)620-0950</a></p>
   <div class="disclaimer">
-    <strong>Disclaimer:</strong> This website provides information and guidance for Progressive Insurance bill payment only. We are not affiliated with, authorized by, or endorsed by Progressive Insurance Corporation or its subsidiaries. Progressive® is a trademark of Progressive Insurance. For official Progressive insurance services, visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer" style="color: #0033a0; font-weight: bold;">Progressive.com</a>. All payment methods are subject to Progressive's terms and conditions. Always verify payment amounts and methods on your official bill before submitting payment.
+    <strong>Disclaimer:</strong> This website provides information and guidance for Progressive Insurance bill payment. We are not affiliated with Progressive Insurance. For official services, visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer" style="color: #0033a0; font-weight: bold;">Progressive.com</a>. Always verify payment amounts on your official bill before submitting payment.
   </div>
-  <p style="margin-top: 1em; font-size: 0.85em; color: #aaa;">© 2026 Progressive Insurance Bill Pay Guide | All rights reserved | Independent Information Resource</p>
+  <p style="margin-top: 1.5em; font-size: 0.85em; color: #aaa;">© 2026 Progressive Insurance Bill Pay Guide | Independent Information Resource | All Rights Reserved</p>
 </footer>
 
 <script>
@@ -1151,21 +1436,9 @@
     title.addEventListener('click', function(e) {
       e.preventDefault();
       const parent = this.parentElement;
-      const isOpen = parent.classList.contains('open');
-      
-      // Close all other items in same collapse
-      const collapse = parent.parentElement;
-      collapse.querySelectorAll('.collapse-item.open').forEach(item => {
-        if (item !== parent) {
-          item.classList.remove('open');
-        }
-      });
-      
-      // Toggle current item
       parent.classList.toggle('open');
     });
 
-    // Keyboard accessibility
     title.addEventListener('keydown', function(e) {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -1195,7 +1468,7 @@
     });
   });
 
-  // Phone number tracking (optional - for analytics)
+  // Phone number tracking
   const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
   phoneLinks.forEach(link => {
     link.addEventListener('click', function() {
