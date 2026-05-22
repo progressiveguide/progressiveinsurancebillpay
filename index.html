@@ -652,6 +652,31 @@
         page-break-inside: avoid;
       }
     }
+    /* HERO H1 FIX */
+.hero h1,
+.hero-title,
+header h1 {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.45) !important;
+    position: relative;
+    z-index: 99 !important;
+}
+
+/* Overlay Fix */
+.hero::before,
+.hero::after {
+    z-index: 1 !important;
+}
+
+.hero-content,
+.hero .container {
+    position: relative;
+    z-index: 99 !important;
+    }
   </style>
 
   <script type="application/ld+json">
@@ -810,7 +835,7 @@
     
     <div class="icon-line">
       <i class="fa-solid fa-globe" aria-hidden="true"></i>
-      <span><strong>Pay Online:</strong> Log into progressive.com and make a one-time payment instantly. No login required option available. Payment posts within minutes.</span>
+      <span><strong>Pay Online:</strong> Log into progressive.com or call 1(888)620-0950 and make a one-time payment instantly. No login required option available. Payment posts within minutes.</span>
     </div>
     
     <div class="icon-line">
@@ -845,7 +870,7 @@
     <div class="step-guide">
       <h4>How to pay Progressive without logging in:</h4>
       <ol>
-        <li>Visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> homepage</li>
+        <li>Visit <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">Progressive.com</a> homepage or Dial 1(888)620-0950</li>
         <li>Look for "Pay Without Logging In" or "Quick Pay" link (usually top banner)</li>
         <li>Click on guest payment option</li>
         <li>Enter your policy number (found on your bill)</li>
@@ -874,7 +899,7 @@
       <h4>Step-by-step: Pay one-time online with account login:</h4>
       <ol>
         <li>Open web browser on desktop or mobile device</li>
-        <li>Go to <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com</a></li>
+        <li>Go to <a href="https://www.progressive.com/" target="_blank" rel="noopener noreferrer">progressive.com or Dial 1(888)620-0950</a></li>
         <li>Click "Log In" button (top-right of page)</li>
         <li>Enter your username or email address</li>
         <li>Enter your password</li>
@@ -1102,7 +1127,7 @@
             <div class="column">
               <h4>Steps 1-8</h4>
               <ol>
-                <li>Open progressive.com homepage</li>
+                <li>Open progressive.com or reach out to 1(888)620-0950 homepage</li>
                 <li>Look at top of page for "Pay Without Logging In"</li>
                 <li>Or look for "Quick Pay" link</li>
                 <li>Click on guest payment option</li>
@@ -1138,7 +1163,7 @@
           <span>Step-by-Step: How to Make a One-Time Payment</span>
         </div>
         <div class="collapse-content">
-          <p><strong>What is one-time payment?</strong> A single payment transaction that doesn't set up recurring charges. You have full control over amount and timing.</p>
+          <p><strong>What is Progressive one-time payment?</strong> A single payment transaction that doesn't set up recurring charges. You have full control over amount and timing.</p>
           
           <div class="step-guide">
             <ol>
