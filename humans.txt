@@ -1,0 +1,8 @@
+/* TEAM */
+Publisher: Insurance Bill Help
+Project: Progressive Insurance Bill Pay Guide
+Platform: GitHub Pages
+
+/* SITE */
+Last Updated: May 25 2026
+Language: English
