@@ -26,6 +26,15 @@ Welcome to **Progressive Insurance Bill Pay** – your user-focused, up-to-date 
 
 Please open an [issue](https://github.com/progressiveguide/progressiveinsurancebillpay/issues) or use the contact/support info within the HTML page.
 
+# Progressive Insurance Bill Pay
+
+Publisher: Insurance Bill Help
+
+This repository contains an informational insurance billing and payment guide.
+
+The content is independently published for informational and educational purposes.
+
+Last Updated: May 25, 2026
 ## Disclaimer
 
 This project is not affiliated with, endorsed, or authorized by Progressive Insurance. All names and company references are for guidance only. Please see the disclaimer at the bottom of the included HTML page.
