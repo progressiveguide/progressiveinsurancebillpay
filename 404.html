@@ -1,27 +1,161 @@
 <!doctype html>
-<html lang="hi">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>404 — Page Not Found</title>
   <meta name="robots" content="noindex">
-  <meta http-equiv="refresh" content="5;url=/">
   <style>
-    body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f7f7f9; color:#222; display:flex; align-items:center; justify-content:center; height:100vh; margin:0}
-    .card{background:#fff; border-radius:10px; padding:28px; box-shadow:0 6px 20px rgba(0,0,0,0.08); max-width:720px; text-align:center}
-    a.button{display:inline-block;margin-top:18px;padding:10px 16px;background:#0b67ff;color:#fff;border-radius:6px;text-decoration:none}
-    small{display:block;margin-top:12px;color:#666}
+    body{font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:#f4f6f8; color:#111; display:flex; align-items:center; justify-content:center; height:100vh; margin:0}
+    .card{background:#fff; border-radius:12px; padding:28px; box-shadow:0 8px 30px rgba(0,0,0,0.08); max-width:880px; width:96%; text-align:left}
+    h1{margin:0 0 8px 0;font-size:28px;color:#0b67ff}
+    p{margin:8px 0;color:#394150}
+    a.button{display:inline-block;margin-top:12px;padding:10px 14px;background:#0b67ff;color:#fff;border-radius:8px;text-decoration:none;font-weight:700}
+    .muted{color:#6b7280;font-size:14px}
+    .sitemap-list{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .sitemap-item{background:#f3f6ff;border:1px solid #e6eefc;padding:8px 10px;border-radius:8px;font-size:14px}
+    .search{margin-top:12px}
+    input[type="search"]{width:100%;padding:10px 12px;border-radius:8px;border:1px solid #d1d5db;font-size:14px}
+    .results{margin-top:12px;max-height:200px;overflow:auto;padding-right:6px}
+    .result a{display:block;padding:8px;border-radius:8px;border:1px solid transparent;margin-bottom:8px;color:#0b67ff;text-decoration:none}
+    .result a:hover{background:#fbfdff;border-color:#e6f0ff}
+    .notice{margin-top:10px;padding:10px;border-radius:8px;background:#fff8e6;border:1px solid #ffecd1;color:#8a5b00}
+    footer{margin-top:14px;font-size:13px;color:#6b7280}
   </style>
 </head>
 <body>
-  <div class="card">
+  <div class="card" role="main">
     <h1>404 — Page Not Found</h1>
-    <p>Maaf kijiye, jo page aap dhoond rahe hain woh yahan maujood nahi hai.</p>
-    <p>Aap <a href="/">homepage</a> par jaa sakte hain ya niche diya gaya button click karein.</p>
-    <a class="button" href="/">Go to Homepage</a>
-    <small>Ya agar aap kisi "location" link se aaye thay, to <strong>5 second</strong> me hum aapko homepage par bhej denge. Agar turant jaana chahte hain to upar click karein.</small>
-    <hr>
-    <p style="font-size:13px;color:#666;margin-top:14px">Sitemap: <a href="/sitemap.xml">/sitemap.xml</a></p>
+    <p>Sorry — we couldn't find the page you were looking for.</p>
+    <p class="muted">If you followed a location link (state or city) from our sitemap, we will try to find and open the matching page for you automatically. Otherwise use the search below to jump to a listed location or return to the homepage.</p>
+
+    <div style="display:flex;gap:10px;align-items:center;margin-top:10px;">
+      <a class="button" href="/">Go to Homepage</a>
+      <a style="margin-left:6px;font-weight:700;color:#0b67ff;text-decoration:none" href="/sitemap.xml">View sitemap</a>
+    </div>
+
+    <div class="notice" id="auto-notice">Checking sitemap for matching location links…</div>
+
+    <div class="search">
+      <label for="q" class="muted">Search states & cities from sitemap:</label>
+      <input id="q" type="search" placeholder="Type state or city name (e.g. california or new-york)" aria-label="Search sitemap locations">
+      <div class="results" id="results" aria-live="polite"></div>
+    </div>
+
+    <div style="margin-top:14px">
+      <strong>Popular sitemap locations</strong>
+      <div class="sitemap-list" id="popular"></div>
+    </div>
+
+    <footer>
+      <div>Sitemap: <a href="/sitemap.xml">/sitemap.xml</a> — If a location link is broken, please report it to the site owner.</div>
+    </footer>
   </div>
+
+  <script>
+    (function(){
+      const notice = document.getElementById('auto-notice');
+      const results = document.getElementById('results');
+      const q = document.getElementById('q');
+      const popular = document.getElementById('popular');
+
+      // Utility to decode param values like new-york -> New York
+      function pretty(name){
+        return decodeURIComponent(name).replace(/-/g,' ').replace(/\b\w/g, c=>c.toUpperCase());
+      }
+
+      // Fetch sitemap and parse <loc> entries
+      fetch('/sitemap.xml', {cache: 'no-store'}).then(r=>{
+        if(!r.ok) throw new Error('sitemap fetch failed');
+        return r.text();
+      }).then(xmlText=>{
+        const parser = new DOMParser();
+        const xml = parser.parseFromString(xmlText, 'application/xml');
+        const locs = Array.from(xml.getElementsByTagName('loc')).map(n=>n.textContent.trim());
+
+        // Extract state and city entries
+        const states = [];
+        const cities = [];
+        const others = [];
+        const base = location.origin + location.pathname.replace(/\/[^/]*$/, '/') ; // root of site
+
+        locs.forEach(u=>{
+          try{
+            const url = new URL(u);
+            if(url.searchParams.has('state')){
+              const v = url.searchParams.get('state');
+              states.push({key:v, url:u, label:pretty(v)});
+            } else if(url.searchParams.has('city')){
+              const v = url.searchParams.get('city');
+              cities.push({key:v, url:u, label:pretty(v)});
+            } else {
+              others.push(u);
+            }
+          }catch(e){ /* ignore */ }
+        });
+
+        // Put popular items (first 20 states + first 20 cities)
+        const pop = states.slice(0,20).concat(cities.slice(0,20));
+        pop.forEach(item=>{
+          const el = document.createElement('a');
+          el.href = item.url.replace('https://progressiveguide.github.io','');
+          el.className = 'sitemap-item';
+          el.textContent = item.label;
+          popular.appendChild(el);
+        });
+
+        // If visitor arrived with ?state= or ?city= in URL, try to match and redirect
+        const params = new URLSearchParams(location.search);
+        const paramState = params.get('state');
+        const paramCity = params.get('city');
+
+        if(paramState || paramCity){
+          const key = paramState ? 'state' : 'city';
+          const value = paramState || paramCity;
+          const find = (key==='state' ? states : cities).find(x=>x.key.toLowerCase()===value.toLowerCase());
+          if(find){
+            notice.textContent = 'Found matching location in sitemap. Redirecting you now…';
+            // Redirect to the exact sitemap URL (preserves canonical / full path)
+            window.location.replace(find.url);
+            return; // stop further UI population
+          } else {
+            notice.textContent = 'No exact match found in sitemap for the requested location. You can search below or go to the homepage.';
+          }
+        } else {
+          notice.textContent = 'No location parameter detected in the URL. Use the search below or choose a popular location.';
+        }
+
+        // Combine searchable list
+        const searchable = states.concat(cities).map(x=>({label:x.label, url:x.url, key:x.key}));
+
+        function renderResults(query){
+          results.innerHTML = '';
+          if(!query) return;
+          const ql = query.toLowerCase();
+          const filtered = searchable.filter(s=>s.label.toLowerCase().includes(ql) || s.key.toLowerCase().includes(ql)).slice(0,50);
+          if(filtered.length===0){
+            results.innerHTML = '<div class="muted">No locations matched. Try a different name (e.g. "california" or "new york").</div>';
+            return;
+          }
+          filtered.forEach(f=>{
+            const d = document.createElement('div'); d.className='result';
+            const a = document.createElement('a');
+            a.href = f.url.replace('https://progressiveguide.github.io','');
+            a.textContent = f.label;
+            d.appendChild(a);
+            results.appendChild(d);
+          });
+        }
+
+        q.addEventListener('input', e=>renderResults(e.target.value.trim()));
+
+      }).catch(err=>{
+        notice.textContent = 'Could not load sitemap.xml. You can still return to the homepage or search manually.';
+        console.error('sitemap error', err);
+      });
+
+      // If browser navigation landed on a path that looks like a sitemap link but without query string (e.g. /?state=...) we handled above.
+    })();
+  </script>
 </body>
 </html>
