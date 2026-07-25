@@ -1964,7 +1964,7 @@ Progressive bill pay, Progressive billing phone number, Progressive payment supp
 
     title.addEventListener('click', function(e) {
       e.preventDefault();
-      var parent = this.parentElement;
+      const parent = this.parentElement;
       parent.classList.toggle('open');
       this.setAttribute('aria-expanded', parent.classList.contains('open') ? 'true' : 'false');
     });
