@@ -16,6 +16,11 @@
   <meta name="twitter:title" content="Progressive Insurance Bill Pay Guide - 1(888)620-0950" />
   <meta name="twitter:description" content="Pay your Progressive insurance bill securely. Online, one-time, without login, or call 1(888)620-0950 for assistance." />
 
+  <!-- Security / Best-practice meta -->
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss:; frame-src https:; frame-ancestors 'none';" />
+
   <title>Progressive Insurance Bill Pay | One-Time Payment, Pay Online & Guest Payment 1(888)620-0950</title>
 
   <link rel="icon" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/svgs/solid/money-bill.svg" />
@@ -29,7 +34,7 @@
       --danger: #e65e29;
       --grey-bg: #f4f7fb;
       --text-dark: #1f2937;
-      --text-light: #6b7280;
+      --text-light: #4b5563; /* darkened from #6b7280 for WCAG AA contrast (≥4.5:1 on white) */
       --border-light: #e5e7eb;
       --success: #10b981;
     }
@@ -42,6 +47,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -51,10 +57,11 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
       font-size: clamp(14px, 2.5vw, 16px);
       padding-bottom: 120px;
+      overflow-x: hidden;
     }
 
     a {
-      text-decoration: none;
+      text-decoration: underline; /* distinguishable beyond color alone (WCAG 1.4.1) */
       color: var(--brand);
       transition: color 0.2s ease;
     }
@@ -107,6 +114,7 @@
       border-radius: 6px;
       font-size: clamp(0.85em, 1.5vw, 0.95em);
       transition: all 0.2s ease;
+      text-decoration: none; /* nav context makes links obvious */
     }
 
     nav a:hover,
@@ -158,6 +166,7 @@
       color: var(--brand);
       font-weight: 900;
       font-size: 1.1em;
+      text-decoration: underline; /* visible underline on white box */
     }
 
     /* ===== CONTAINERS & SECTIONS ===== */
@@ -299,6 +308,7 @@
       border-left: 5px solid var(--brand);
     }
 
+    .column h3,
     .column h4 {
       margin-top: 0;
       font-size: clamp(1.05em, 2.5vw, 1.25em);
@@ -479,7 +489,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.7em;
-      text-decoration: none;
+      text-decoration: none; /* button shape is the visual indicator */
       box-shadow: 0 4px 12px rgba(33, 178, 23, 0.2);
     }
 
@@ -510,7 +520,7 @@
       align-items: center;
       gap: 0.7em;
       transition: all 0.2s ease;
-      text-decoration: none;
+      text-decoration: none; /* pill/button shape is the visual indicator */
     }
 
     .floating-cta:hover {
@@ -650,6 +660,31 @@
         page-break-inside: avoid;
       }
     }
+    /* ===== ANCHOR LINKS (jump-nav pills) ===== */
+    .anchor-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 15px 0 20px;
+    }
+
+    .anchor-links a {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 20px;
+      text-decoration: none; /* pill shape is the visual indicator */
+      font-size: .9rem;
+      font-weight: 600;
+      background: #e8edf5;
+      color: var(--brand);
+      border: 1px solid var(--border-light);
+    }
+
+    .anchor-links a:hover {
+      background: #dce4f0;
+      text-decoration: underline;
+    }
+
     /* HERO H1 FIX */
 .hero h1,
 .hero-title,
@@ -786,8 +821,8 @@ header h1 {
   }
   </script>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
 </head>
 <body>
 
@@ -838,7 +873,7 @@ header h1 {
 </p>
  </div>
   <div class="page-meta">
-  <small>Last Reviewed: <strong>June 30, 2026</strong> • Last Updated: <strong>June 27, 2026</strong></small>
+  <small>Last Reviewed: <strong>July 25, 2026</strong> • Last Updated: <strong>July 25, 2026</strong></small>
   </div>
 </header>
 
@@ -905,7 +940,7 @@ header h1 {
 </a>
     <p><strong>Still need help?</strong> Call 1(888)620-0950 for guest payment assistance.</p>
     <div class="reviewed-block">
-  <p><strong>Last Reviewed & Updated:</strong> June 27, 2026 | <strong>Reviewed By:</strong> Insurance Guide Help Editorial Team | <strong>Fact-Checked Against:</strong> Official Company Resources & Publicly Available Information.</p>
+  <p><strong>Last Reviewed & Updated:</strong> July 25, 2026 | <strong>Reviewed By:</strong> Insurance Guide Help Editorial Team | <strong>Fact-Checked Against:</strong> Official Company Resources & Publicly Available Information.</p>
     </div>
     
     <h3>Payment Method 2: One-Time Payment via Your Online Account</h3>
@@ -1095,7 +1130,7 @@ header h1 {
           
           <div class="two-column">
             <div class="column">
-              <h4>Steps 1-8</h4>
+              <h3>Steps 1-8</h3>
               <ol>
                 <li>Go to progressive.com in your web browser</li>
                 <li>Click "Log In" button in top-right corner</li>
@@ -1108,7 +1143,7 @@ header h1 {
               </ol>
             </div>
             <div class="column">
-              <h4>Steps 9-15</h4>
+              <h3>Steps 9-15</h3>
               <ol start="9">
                 <li>Find and click "Billing" or "Make a Payment" tab</li>
                 <li>Select the policy you want to pay for</li>
@@ -1134,7 +1169,7 @@ header h1 {
           
           <div class="two-column">
             <div class="column">
-              <h4>Steps 1-8</h4>
+              <h3>Steps 1-8</h3>
               <ol>
                 <li>Open progressive.com or reach out to 1(888)620-0950 homepage</li>
                 <li>Look at top of page for "Pay Without Logging In"</li>
@@ -1147,7 +1182,7 @@ header h1 {
               </ol>
             </div>
             <div class="column">
-              <h4>Steps 9-15</h4>
+              <h3>Steps 9-15</h3>
               <ol start="9">
                 <li>Click "Verify" or "Find Account"</li>
                 <li>Your account information displays</li>
@@ -1896,30 +1931,13 @@ Progressive bill pay, Progressive billing phone number, Progressive payment supp
 
 </section>
 
-<style>
-.anchor-links{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin:15px 0 20px;
-}
-.anchor-links a{
-display:inline-block;
-padding:8px 14px;
-border-radius:20px;
-text-decoration:none;
-font-size:.9rem;
-font-weight:600;
-background:rgba(255,255,255,.08);
-}
-</style>
   </section>
   <!-- Updated Section -->
   <section class="card" id="last-updated">
-    <h3><i class="fa-solid fa-calendar" aria-hidden="true"></i> Last Updated & Disclaimer</h3>
-    <p><strong>Last Updated: June 30, 2026</strong></p>
+    <h2><i class="fa-solid fa-calendar" aria-hidden="true"></i> Last Updated &amp; Disclaimer</h2>
+    <p><strong>Last Updated: July 25, 2026</strong></p>
     <p>This comprehensive Progressive insurance bill pay guide has been reviewed and updated for current payment methods, security features, and 2026 best practices.</p>
-  
+  </section>
 </main>
 
 <footer>
@@ -1936,12 +1954,19 @@ background:rgba(255,255,255,.08);
 </footer>
 
 <script>
-  // Collapse/Accordion Functionality
+  // Collapse/Accordion Functionality — with keyboard & ARIA support
   document.querySelectorAll('.collapse-title').forEach(function(title) {
+    // Make keyboard-focusable and expose button semantics
+    title.setAttribute('tabindex', '0');
+    title.setAttribute('role', 'button');
+    var isOpen = title.parentElement.classList.contains('open');
+    title.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
     title.addEventListener('click', function(e) {
       e.preventDefault();
-      const parent = this.parentElement;
+      var parent = this.parentElement;
       parent.classList.toggle('open');
+      this.setAttribute('aria-expanded', parent.classList.contains('open') ? 'true' : 'false');
     });
 
     title.addEventListener('keydown', function(e) {
