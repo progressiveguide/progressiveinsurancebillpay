@@ -17,9 +17,8 @@
   <meta name="twitter:description" content="Pay your Progressive insurance bill securely. Online, one-time, without login, or call 1(888)620-0950 for assistance." />
 
   <!-- Security / Best-practice meta -->
-  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss:; frame-src https:; frame-ancestors 'none';" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss:; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none';" />
 
   <title>Progressive Insurance Bill Pay | One-Time Payment, Pay Online & Guest Payment 1(888)620-0950</title>
 
@@ -821,7 +820,7 @@ header h1 {
   }
   </script>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" onload="this.onload=null;this.rel='stylesheet'" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" media="print" onload="this.media='all'" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
 </head>
 <body>
@@ -1955,12 +1954,21 @@ Progressive bill pay, Progressive billing phone number, Progressive payment supp
 
 <script>
   // Collapse/Accordion Functionality — with keyboard & ARIA support
-  document.querySelectorAll('.collapse-title').forEach(function(title) {
+  document.querySelectorAll('.collapse-title').forEach(function(title, idx) {
     // Make keyboard-focusable and expose button semantics
     title.setAttribute('tabindex', '0');
     title.setAttribute('role', 'button');
     var isOpen = title.parentElement.classList.contains('open');
     title.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+
+    // Link control to its collapsible region via aria-controls
+    var content = title.nextElementSibling;
+    if (content && content.classList.contains('collapse-content')) {
+      if (!content.id) {
+        content.id = 'collapse-content-' + idx;
+      }
+      title.setAttribute('aria-controls', content.id);
+    }
 
     title.addEventListener('click', function(e) {
       e.preventDefault();
