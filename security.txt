@@ -1,3 +1,5 @@
-Contact: https://progressiveguide.github.io/progressiveinsurancebillpay/
-Policy: https://progressiveguide.github.io/progressiveinsurancebillpay/
+Contact: https://github.com/progressiveguide
+Security-Policy: https://github.com/progressiveguide/progressiveinsurancebillpay/security
+Expires: 2027-01-01T00:00:00.000Z
 Preferred-Languages: en
+Canonical: https://progressiveguide.github.io/progressiveinsurancebillpay/
