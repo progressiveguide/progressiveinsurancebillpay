@@ -18,6 +18,9 @@
 
   <!-- Security / Best-practice meta -->
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <!-- CSP note: 'unsafe-inline' is required because this static page contains inline <style> blocks,
+       JSON-LD <script> tags, and page-interaction scripts. It still enforces frame-ancestors, base-uri,
+       and object-src restrictions. Nonce-based CSP would require a build/server pipeline. -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data: blob:; font-src 'self' https: data:; connect-src 'self' https: wss:; frame-src 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none';" />
 
   <title>Progressive Insurance Bill Pay | One-Time Payment, Pay Online & Guest Payment 1(888)620-0950</title>
