@@ -50,34 +50,23 @@
 
   <script>
     (function(){
-      // Compute homepage root based on current path so redirect stays on same repository/site subpath.
-      // Example: /progressiveinsurancebillpay/non-existent -> /progressiveinsurancebillpay/
-      function computeHome(){
-        try{
-          var p = location.pathname;
-          // If we're already at a root-like path (ends with /), use current pathname
-          if(p.endsWith('/')) return location.origin + p;
-          // Otherwise remove last segment
-          var parts = p.split('/');
-          parts.pop(); // remove last segment
-          var root = parts.join('/');
-          if(!root.endsWith('/')) root += '/';
-          return location.origin + root;
-        }catch(e){
-          return location.origin + '/';
-        }
-      }
+      // Always redirect to the known site root to avoid loops.
+      // Using a fixed URL prevents infinite redirect if 404.html is served at the root path.
+      var home = 'https://progressiveguide.github.io/progressiveinsurancebillpay/';
 
-      var home = computeHome();
       var btn = document.getElementById('homeBtn');
       btn.setAttribute('href', home);
 
-      // Immediately redirect to home (use replace so 404 doesn't stay in history)
-      try{
-        window.location.replace(home);
-      }catch(e){
-        // If replace fails, offer manual navigation
-        document.getElementById('fallback').textContent = 'Automatic redirect failed — click "Go to Homepage" to continue.';
+      // Only redirect if the current URL is not already the home URL (prevents loops)
+      if (location.href.replace(/#.*$/, '').replace(/\?.*$/, '') !== home) {
+        try{
+          window.location.replace(home);
+        }catch(e){
+          // If replace fails, offer manual navigation
+          document.getElementById('fallback').textContent = 'Automatic redirect failed — click "Go to Homepage" to continue.';
+        }
+      } else {
+        document.getElementById('fallback').textContent = 'You are already at the homepage — the requested page was not found.';
       }
     })();
   </script>
