@@ -1,4 +1,0 @@
-User-agent: *
-Disallow:
-
-Sitemap: https://progressiveguide.github.io/progressiveinsurancebillpay/sitemap.xml
