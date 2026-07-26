@@ -29,7 +29,7 @@
       --danger: #e65e29;
       --grey-bg: #f4f7fb;
       --text-dark: #1f2937;
-      --text-light: #6b7280;
+      --text-light: #4b5563;
       --border-light: #e5e7eb;
       --success: #10b981;
     }
@@ -54,14 +54,22 @@
     }
 
     a {
-      text-decoration: none;
       color: var(--brand);
-      transition: color 0.2s ease;
+      text-decoration: underline;
+      text-underline-offset: 0.14em;
+      text-decoration-thickness: 0.09em;
+      transition: color 0.2s ease, text-decoration-color 0.2s ease;
     }
 
     a:hover {
       color: #0058d4;
-      text-decoration: underline;
+      text-decoration-thickness: 0.12em;
+    }
+
+    a:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 2px;
+      border-radius: 4px;
     }
 
     /* ===== NAVIGATION ===== */
@@ -107,6 +115,7 @@
       border-radius: 6px;
       font-size: clamp(0.85em, 1.5vw, 0.95em);
       transition: all 0.2s ease;
+      text-decoration: none;
     }
 
     nav a:hover,
@@ -158,6 +167,7 @@
       color: var(--brand);
       font-weight: 900;
       font-size: 1.1em;
+      text-decoration: none;
     }
 
     /* ===== CONTAINERS & SECTIONS ===== */
@@ -299,7 +309,7 @@
       border-left: 5px solid var(--brand);
     }
 
-    .column h4 {
+    .column h3 {
       margin-top: 0;
       font-size: clamp(1.05em, 2.5vw, 1.25em);
     }
@@ -392,6 +402,12 @@
 
     .collapse-title:hover {
       color: #0058d4;
+    }
+
+    .collapse-title:focus-visible {
+      outline: 3px solid #f59e0b;
+      outline-offset: 3px;
+      border-radius: 6px;
     }
 
     .collapse-title i {
@@ -533,6 +549,12 @@
       margin: 0.7em 0;
       font-size: clamp(0.9em, 2vw, 1em);
       line-height: 1.7;
+    }
+
+    .anchor-links a,
+    .cta-btn,
+    .floating-cta {
+      text-decoration: none;
     }
 
     .disclaimer {
@@ -788,8 +810,9 @@ header h1 {
   }
   </script>
 
-  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" /></noscript>
 </head>
 
 <body>
@@ -1101,7 +1124,7 @@ header h1 {
           
           <div class="two-column">
             <div class="column">
-              <h4>Steps 1-8</h4>
+              <h3>Steps 1-8</h3>
               <ol>
                 <li>Go to progressive.com in your web browser</li>
                 <li>Click "Log In" button in top-right corner</li>
@@ -1114,7 +1137,7 @@ header h1 {
               </ol>
             </div>
             <div class="column">
-              <h4>Steps 9-15</h4>
+              <h3>Steps 9-15</h3>
               <ol start="9">
                 <li>Find and click "Billing" or "Make a Payment" tab</li>
                 <li>Select the policy you want to pay for</li>
@@ -1141,7 +1164,7 @@ header h1 {
           
           <div class="two-column">
             <div class="column">
-              <h4>Steps 1-8</h4>
+              <h3>Steps 1-8</h3>
               <ol>
                 <li>Open progressive.com or reach out to 1(888)620-0950 homepage</li>
                 <li>Look at top of page for "Pay Without Logging In"</li>
@@ -1154,7 +1177,7 @@ header h1 {
               </ol>
             </div>
             <div class="column">
-              <h4>Steps 9-15</h4>
+              <h3>Steps 9-15</h3>
               <ol start="9">
                 <li>Click "Verify" or "Find Account"</li>
                 <li>Your account information displays</li>
@@ -1831,7 +1854,8 @@ header h1 {
       <strong>💡 Bundling & Payment Strategy:</strong> Bundling simplifies your insurance management with one consolidated bill covering all policy types. You can pay online at Progressive.com, through the mobile app, by phone, or set up AutoPay for automatic monthly bundled payments without processing fees. For bundling questions or payment assistance, call <a href="tel:+18886200950">1(888)620-0950</a> 24/7.
     </div>
   </div>
-  <!-- Premium PAA Add-On Section -->
+</section>
+    <!-- Premium PAA Add-On Section -->
 <section class="card" id="progressive-billing-help-center">
 
 <h2><i class="fa-solid fa-circle-question"></i> Progressive Bill Pay & Account Help Center</h2>
@@ -1925,12 +1949,12 @@ font-weight:600;
 background:rgba(255,255,255,.08);
 }
 </style>
-  </section>
   <!-- Updated Section -->
   <section class="card" id="last-updated">
     <h3><i class="fa-solid fa-calendar" aria-hidden="true"></i> Last Updated & Disclaimer</h3>
     <p><strong>Last Updated: June 30, 2026</strong></p>
     <p>This comprehensive Progressive insurance bill pay guide has been reviewed and updated for current payment methods, security features, and 2026 best practices.</p>
+  </section>
   
 </main>
 
@@ -1972,7 +1996,7 @@ background:rgba(255,255,255,.08);
     let current = '';
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      if (pageYOffset >= sectionTop - 200) {
+      if (window.scrollY >= sectionTop - 200) {
         current = section.getAttribute('id');
       }
     });
@@ -1983,7 +2007,7 @@ background:rgba(255,255,255,.08);
         link.classList.add('active');
       }
     });
-  });
+  }, { passive: true });
 
   // Phone number tracking
   const phoneLinks = document.querySelectorAll('a[href^="tel:"]');
@@ -2006,7 +2030,7 @@ var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
   s1.async = true;
   s1.src = 'https://embed.tawk.to/694ee318a5f5761981f1731e/default';
   s1.charset = 'UTF-8';
-  s1.setAttribute('crossorigin', '*');
+  s1.setAttribute('crossorigin', 'anonymous');
   s1.setAttribute('referrerpolicy', 'no-referrer');
   s0.parentNode.insertBefore(s1, s0);
 })();
