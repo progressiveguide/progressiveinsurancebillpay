@@ -107,7 +107,12 @@ function main() {
 
   const nowTs = nowISO();
 
-  for (const file of HTML_FILES) {
+  const htmlFiles =
+    (config.paths && config.paths.length > 0
+      ? config.paths.map((p) => (p === '/' || p === '' ? 'index.html' : p.replace(/^\//, '')))
+      : HTML_FILES);
+
+  for (const file of htmlFiles) {
     processFile(path.join(ROOT, file), nowTs);
   }
 
