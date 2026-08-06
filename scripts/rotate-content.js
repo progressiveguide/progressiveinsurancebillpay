@@ -103,9 +103,14 @@ function processFile(filePath, config, state) {
 
   const markers = config.selectorsOrMarkers;
   const engagement = config.engagement;
-  const humanDate = nowHuman();
-  const isoDate = nowISO();
-
+  const hourMs = Math.floor(Date.now() / 3600000) * 3600000; // start of current UTC hour
+  const humanDate = new Date(hourMs).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+  const isoDate = new Date(hourMs).toISOString();
   // --- Intro ---
   const introList = config.contentOptions.introVariants;
   const introIdx = rotationIndex(introList.length, 0);
