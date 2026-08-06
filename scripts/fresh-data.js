@@ -74,13 +74,14 @@ function pickItems(pool, count, offsetSeed) {
 }
 
 function generateFreshData(config) {
-  const ts = nowISO();
+  const hourMs = Math.floor(Date.now() / 3600000) * 3600000; // start of current UTC hour
+  const ts = new Date(hourMs).toISOString();
   const humanDate = nowHuman();
 
   const relatedSearches = pickItems(RELATED_SEARCHES_POOL, 8, 0);
 
   const newsItems = pickItems(NEWS_HEADLINES_POOL, 5, 5).map((headline, i) => {
-    const d = new Date(Date.now() - i * 3600000 * 2);
+    const d = new Date(hourMs - i * 3600000 * 2);
     return {
       headline,
       timestamp: d.toISOString(),
