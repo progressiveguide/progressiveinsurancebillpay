@@ -16,7 +16,6 @@ const { loadJSON, writeJSON, ensureDir, replaceMarkerContent, rotationIndex, now
 
 const ROOT = path.resolve(__dirname, '..');
 const CONFIG_PATH = path.join(ROOT, 'config', 'seo-config.json');
-const STATE_PATH = path.join(ROOT, '.seo-state.json');
 const DATA_PATH = path.join(ROOT, 'data', 'fresh-data.json');
 
 // ---------------------------------------------------------------------------
