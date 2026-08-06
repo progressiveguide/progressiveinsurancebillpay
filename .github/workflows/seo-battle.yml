@@ -1,0 +1,62 @@
+name: SEO Freshness Update
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  seo-update:
+    name: Hourly SEO freshness update
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref_name == 'main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: Run fresh-data.js
+        run: node scripts/fresh-data.js
+
+      - name: Run rotate-content.js
+        run: node scripts/rotate-content.js
+
+      - name: Run update-schema.js
+        run: node scripts/update-schema.js
+
+      - name: Run generate-sitemap.js
+        run: node scripts/generate-sitemap.js
+
+      - name: Run notify-indexing.js
+        run: node scripts/notify-indexing.js
+        continue-on-error: true   # notification failures should not block commits
+
+      - name: Commit and push changes
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No file changes — nothing to commit."
+          else
+            git commit -m "chore(seo): hourly freshness update [skip ci]"
+            git push
+          fi
