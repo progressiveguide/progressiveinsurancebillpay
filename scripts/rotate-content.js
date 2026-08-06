@@ -45,19 +45,21 @@ function saveState(state) {
 // ---------------------------------------------------------------------------
 
 function updateEngagementCounter(state, engagement) {
-  const inc =
-    engagement.incrementMin +
-    Math.floor(
-      ((Date.now() % 1000) / 1000) * (engagement.incrementMax - engagement.incrementMin + 1)
-    );
-  const current = state.viewCount || engagement.baseViews;
+  const hourSeed = Math.floor(Date.now() / 3600000); // hours since epoch (UTC)
+  if (state.lastEngagementHour === hourSeed) return state;
+
+  const span = engagement.incrementMax - engagement.incrementMin + 1;
+  const inc = engagement.incrementMin + (hourSeed % span);
+
+  const current = state.viewCount ?? engagement.baseViews;
   const next = Math.min(current + inc, engagement.maxViews);
 
-  const reviews = state.reviewCount || engagement.baseReviews;
+  const reviews = state.reviewCount ?? engagement.baseReviews;
   const nextReviews = Math.min(reviews + (next % 2 === 0 ? 1 : 0), engagement.maxReviews);
 
   state.viewCount = next;
   state.reviewCount = nextReviews;
+  state.lastEngagementHour = hourSeed;
   return state;
 }
 
