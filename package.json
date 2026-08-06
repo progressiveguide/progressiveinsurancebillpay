@@ -1,0 +1,17 @@
+{
+  "name": "progressiveinsurancebillpay",
+  "version": "1.0.0",
+  "description": "Progressive Insurance Bill Pay Guide – automated SEO freshness system",
+  "private": true,
+  "scripts": {
+    "fresh-data": "node scripts/fresh-data.js",
+    "rotate-content": "node scripts/rotate-content.js",
+    "update-schema": "node scripts/update-schema.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "notify-indexing": "node scripts/notify-indexing.js",
+    "seo-update": "npm run fresh-data && npm run rotate-content && npm run update-schema && npm run generate-sitemap && npm run notify-indexing"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
