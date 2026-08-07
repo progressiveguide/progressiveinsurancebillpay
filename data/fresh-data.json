@@ -1,41 +1,47 @@
 {
-  "generatedAt": "2026-08-07T18:00:00.000Z",
-  "humanDate": "August 7, 2026",
-  "relatedSearches": [
-    "progressive quick pay options",
-    "pay progressive by phone 24/7",
-    "progressive insurance payment methods 2026",
-    "progressive bill pay guest checkout",
-    "how to pay progressive insurance online",
-    "progressive insurance billing support",
-    "progressive payment portal",
-    "progressive bill pay app"
+  "timestamp": "2026-08-07T22:18:20.618Z",
+  "trendingSearches": [
+    {
+      "term": "How to pay Progressive insurance online",
+      "volume": 4278
+    },
+    {
+      "term": "Progressive bill payment without login",
+      "volume": 3806
+    },
+    {
+      "term": "Pay Progressive bill by phone",
+      "volume": 5363
+    },
+    {
+      "term": "Progressive AutoPay setup guide",
+      "volume": 5055
+    },
+    {
+      "term": "Progressive guest payment options",
+      "volume": 5979
+    }
   ],
-  "newsItems": [
+  "newsHeadlines": [
     {
-      "headline": "Guest Checkout Now Available: Pay Progressive Without an Account",
-      "timestamp": "2026-08-07T18:00:00.000Z",
-      "label": "Aug 7, 2026"
+      "id": 1,
+      "headline": "Progressive updates payment processing times in 2026",
+      "date": "2026-08-05"
     },
     {
-      "headline": "Progressive Insurance Customers Can Now Pay in Under 2 Minutes Online",
-      "timestamp": "2026-08-07T16:00:00.000Z",
-      "label": "Aug 7, 2026"
+      "id": 2,
+      "headline": "New guest payment option now available 24/7",
+      "date": "2026-08-04"
     },
     {
-      "headline": "Progressive Quick Pay: New Features Speed Up the Payment Process",
-      "timestamp": "2026-08-07T14:00:00.000Z",
-      "label": "Aug 7, 2026"
+      "id": 3,
+      "headline": "AutoPay enrollment increases for Progressive policyholders",
+      "date": "2026-08-06"
     },
     {
-      "headline": "Independent Review: Progressive Insurance Bill Pay is Among the Easiest",
-      "timestamp": "2026-08-07T12:00:00.000Z",
-      "label": "Aug 7, 2026"
-    },
-    {
-      "headline": "Progressive Insurance Enhances Online Bill Pay Portal with Faster Checkout",
-      "timestamp": "2026-08-07T10:00:00.000Z",
-      "label": "Aug 7, 2026"
+      "id": 4,
+      "headline": "Mobile app payment method gains popularity",
+      "date": "2026-08-04"
     }
   ]
 }
