@@ -74,18 +74,14 @@ htmlFiles.forEach(filename => {
   // Inject related searches
   const relatedSearchesHtml = `<ul class="related-searches-list">${freshData.trendingSearches.map(s => `<li>${s.term} (${s.volume} searches)</li>`).join('')}</ul>`;
   content = content.replace(
-    /<!-- DYNAMIC:RELATED-SEARCHES -->[
-
-\S]*?<!-- \/DYNAMIC:RELATED-SEARCHES -->/,
+    /<!-- DYNAMIC:RELATED-SEARCHES -->[\s\S]*?<!-- \/DYNAMIC:RELATED-SEARCHES -->/,
     `<!-- DYNAMIC:RELATED-SEARCHES -->\n    ${relatedSearchesHtml}\n    <!-- /DYNAMIC:RELATED-SEARCHES -->`
   );
 
   // Inject news ticker
   const newsHtml = `<ul class="news-ticker-list">${freshData.newsHeadlines.map(n => `<li><strong>${n.date}:</strong> ${n.headline}</li>`).join('')}</ul>`;
   content = content.replace(
-    /<!-- DYNAMIC:NEWS-TICKER -->[
-
-\S]*?<!-- \/DYNAMIC:NEWS-TICKER -->/,
+    /<!-- DYNAMIC:NEWS-TICKER -->[\s\S]*?<!-- \/DYNAMIC:NEWS-TICKER -->/,
     `<!-- DYNAMIC:NEWS-TICKER -->\n    ${newsHtml}\n    <!-- /DYNAMIC:NEWS-TICKER -->`
   );
 
