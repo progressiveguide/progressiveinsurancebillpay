@@ -1,122 +1,51 @@
-'use strict';
+#!/usr/bin/env node
+
 /**
- * scripts/update-schema.js
- *
- * Finds JSON-LD <script> blocks in HTML files and updates freshness-related
- * fields (dateModified, lastReviewed) without touching other properties.
+ * update-schema.js
+ * Updates dateModified / lastReviewed fields in all JSON-LD structured data blocks
  */
 
 const fs = require('fs');
 const path = require('path');
-const { loadJSON, nowISO } = require('./utils/helpers');
 
-const ROOT = path.resolve(__dirname, '..');
-const CONFIG_PATH = path.join(ROOT, 'config', 'seo-config.json');
+const now = new Date().toISOString();
 
-const HTML_FILES = ['index.html', 'pay-without-login.html', 'updates.html'];
+// Helper: Update JSON-LD timestamps
+function updateJsonLdTimestamps(content) {
+  // Update dateModified in JSON-LD blocks
+  content = content.replace(
+    /"dateModified":\s*"[^"]*"/g,
+    `"dateModified": "${now}"`
+  );
 
-/**
- * Update a single parsed JSON-LD object with freshness fields appropriate
- * to its @type. Returns the (potentially modified) object.
- */
-function freshenSchema(obj, nowTs) {
-  if (!obj || typeof obj !== 'object') return obj;
+  // Update lastReviewed in JSON-LD blocks
+  content = content.replace(
+    /"lastReviewed":\s*"[^"]*"/g,
+    `"lastReviewed": "${now}"`
+  );
 
-  const type = obj['@type'];
-
-  // Types that support dateModified
-  const modifiableTypes = [
-    'WebPage', 'Article', 'NewsArticle', 'BlogPosting',
-    'WebSite', 'ItemPage', 'AboutPage', 'FAQPage',
-  ];
-
-  if (modifiableTypes.includes(type)) {
-    obj['dateModified'] = nowTs;
-    if (type === 'FAQPage' || type === 'WebPage' || type === 'ItemPage') {
-      obj['lastReviewed'] = nowTs;
-    }
-  }
-
-  // FAQPage: add dateModified to mainEntity items if present
-  if (type === 'FAQPage' && Array.isArray(obj['mainEntity'])) {
-    // FAQPage Question items don't carry dateModified per schema.org spec;
-    // we only update the parent.
-  }
-
-  return obj;
+  return content;
 }
 
-/**
- * Process all JSON-LD blocks in one HTML file.
- */
-function processFile(filePath, nowTs) {
-  if (!fs.existsSync(filePath)) {
-    console.warn(`[update-schema] File not found, skipping: ${filePath}`);
-    return false;
-  }
+// Apply to HTML files
+const pagesDir = path.join(__dirname, '..');
+const htmlFiles = ['index.html', 'pay-without-login.html', 'updates.html'];
 
-  let html = fs.readFileSync(filePath, 'utf8');
-  const original = html;
+htmlFiles.forEach(filename => {
+  const filePath = path.join(pagesDir, filename);
+  if (!fs.existsSync(filePath)) return;
 
-  // Match <script type="application/ld+json">...</script>
-  const re = /(<script\s+type="application\/ld\+json">)([\s\S]*?)(<\/script>)/gi;
+  let content = fs.readFileSync(filePath, 'utf8');
+  
+  // Count JSON-LD blocks before update
+  const jsonLdCount = (content.match(/"dateModified"/g) || []).length;
+  
+  content = updateJsonLdTimestamps(content);
+  
+  fs.writeFileSync(filePath, content);
+  console.log(`✅ Updated ${filename}`);
+  console.log(`   - Updated ${jsonLdCount} JSON-LD timestamp(s)`);
+  console.log(`   - Timestamp: ${now}`);
+});
 
-  html = html.replace(re, (match, open, jsonContent, close) => {
-    let parsed;
-    try {
-      parsed = JSON.parse(jsonContent);
-    } catch (e) {
-      console.warn(`[update-schema] Could not parse JSON-LD in ${path.basename(filePath)}: ${e.message}`);
-      return match; // leave unchanged
-    }
-
-    // Handle both single object and @graph array
-    if (Array.isArray(parsed)) {
-      parsed = parsed.map((item) => freshenSchema(item, nowTs));
-    } else if (parsed['@graph']) {
-      parsed['@graph'] = parsed['@graph'].map((item) => freshenSchema(item, nowTs));
-    } else {
-      parsed = freshenSchema(parsed, nowTs);
-    }
-
-    const pretty = JSON.stringify(parsed, null, 2)
-      .split('\n')
-      .map((line) => '  ' + line)
-      .join('\n');
-    return `${open}\n${pretty}\n${close}`;
-  });
-
-  if (html !== original) {
-    fs.writeFileSync(filePath, html, 'utf8');
-    console.log(`[update-schema] Updated JSON-LD in ${path.relative(ROOT, filePath)}`);
-    return true;
-  }
-
-  console.log(`[update-schema] No JSON-LD changes needed in ${path.relative(ROOT, filePath)}`);
-  return false;
-}
-
-function main() {
-  console.log('[update-schema] Updating JSON-LD structured data…');
-
-  const config = loadJSON(CONFIG_PATH);
-  if (!config) {
-    console.error('[update-schema] Cannot load config — aborting.');
-    process.exit(1);
-  }
-
-  const nowTs = nowISO();
-
-  const htmlFiles =
-    (config.paths && config.paths.length > 0
-      ? config.paths.map((p) => (p === '/' || p === '' ? 'index.html' : p.replace(/^\//, '')))
-      : HTML_FILES);
-
-  for (const file of htmlFiles) {
-    processFile(path.join(ROOT, file), nowTs);
-  }
-
-  console.log('[update-schema] Done.');
-}
-
-main();
+console.log(`\n📅 All schema timestamps updated to: ${now}`);

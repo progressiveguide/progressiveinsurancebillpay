@@ -2,9 +2,11 @@
 
 Welcome to **Progressive Insurance Bill Pay** – your user-focused, up-to-date web guide for everything related to managing and paying Progressive Insurance bills.
 
-## What’s Inside
+## What's Inside
 
 - **index.html**: Modern, SEO-optimized, human-style, long-form help page (all payment methods, detailed FAQ, how-to, blog, and more).
+- **pay-without-login.html**: Specialized guide for guest payment option without account login.
+- **updates.html**: Latest updates and news about Progressive bill payment features.
 - **robots.txt**: Ensures friendly search engine indexing for your published GitHub Pages site.
 - **.gitignore**: Keeps your repo clean and free from unnecessary files.
 
@@ -23,7 +25,6 @@ Welcome to **Progressive Insurance Bill Pay** – your user-focused, up-to-date 
    The HTML is designed for easy manual expansion – extend blogs, FAQs, or payment help to reach high word-count and SEO authority.
 
 ## For Questions
-# Progressive Insurance Bill Pay
 
 Publisher: Insurance Bill Help
 
@@ -31,10 +32,11 @@ This repository contains an informational insurance billing and payment guide.
 
 The content is independently published for informational and educational purposes.
 
-Last Updated: May 25, 2026
+Last Updated: August 7, 2026
+
 ## Disclaimer
 
-This project is not affiliated with, endorsed, or authorized by Progressive Insurance. All names and company references are for guidance only. Please see the disclaimer at the bottom of the included HTML page.
+This project is not affiliated with, endorsed, or authorized by Progressive Insurance. All names and company references are for guidance only. Please see the disclaimer at the bottom of the included pages for full legal details.
 
 ---
 
@@ -47,7 +49,7 @@ This repository includes an automated hourly SEO freshness system that keeps pag
 A GitHub Actions workflow (`.github/workflows/seo-battle.yml`) runs every hour and executes the following scripts in order:
 
 | Script | Purpose |
-|--------|---------|
+|--------|----------|
 | `scripts/fresh-data.js` | Generates mock trending searches and news headlines, writes to `data/fresh-data.json`, injects into dynamic marker sections |
 | `scripts/rotate-content.js` | Rotates intro text, lead image, CTA variant, last-verified timestamps, and engagement counters |
 | `scripts/update-schema.js` | Updates `dateModified` / `lastReviewed` fields in all JSON-LD structured data blocks |
@@ -64,7 +66,7 @@ Pages use HTML comment markers to define sections that the scripts update. Only 
 <!-- /DYNAMIC:INTRO -->
 
 <!-- DYNAMIC:LAST-VERIFIED -->
-<small>Last Reviewed: <strong>August 6, 2026</strong> • Last Updated: <strong>August 6, 2026</strong></small>
+<small>Last Reviewed: <strong>August 7, 2026</strong> • Last Updated: <strong>August 7, 2026</strong></small>
 <!-- /DYNAMIC:LAST-VERIFIED -->
 
 <!-- DYNAMIC:LEAD-IMAGE -->
@@ -76,7 +78,7 @@ Pages use HTML comment markers to define sections that the scripts update. Only 
 <!-- /DYNAMIC:CTA -->
 
 <!-- DYNAMIC:ENGAGEMENT -->
-<span>4,812 helpful views | ⭐ 4.7 (313 reviews)</span>
+<span>4,838 helpful views | ⭐ 4.7 (313 reviews)</span>
 <!-- /DYNAMIC:ENGAGEMENT -->
 
 <!-- DYNAMIC:RELATED-SEARCHES -->
@@ -112,4 +114,9 @@ npm run notify-indexing   # Ping search engines (requires network)
 npm run seo-update        # Run all scripts in sequence
 ```
 
-State is persisted in `.seo-state.json` (committed to repo) to track engagement counter values across runs.
+### State Persistence
+
+State is persisted in `.seo-state.json` (committed to repo) to track engagement counter values across runs. This file contains:
+- `viewCount` — Current view counter
+- `reviewCount` — Current review counter
+- `lastEngagementHour` — Timestamp of last engagement update

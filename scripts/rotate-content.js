@@ -1,192 +1,108 @@
-'use strict';
+#!/usr/bin/env node
+
 /**
- * scripts/rotate-content.js
- *
- * Rotates intro text, lead image, CTA variant, last-verified timestamps,
- * and engagement counters in HTML pages using <!-- DYNAMIC:* --> markers.
- *
- * Uses deterministic hour-based rotation so the same content is produced
- * for the entire hour (idempotent within an hour, changes each hour).
- * Falls back to state file if available for fine-grained tracking.
- *
- * IMPORTANT: Only replaces explicitly marked sections. All other page
- * content is left completely untouched.
+ * rotate-content.js
+ * Rotates intro text, lead image, CTA variant, last-verified timestamps, and engagement counters
  */
 
 const fs = require('fs');
 const path = require('path');
-const {
-  loadJSON,
-  writeJSON,
-  replaceMarkerContent,
-  rotationIndex,
-  nowISO,
-  nowHuman,
-} = require('./utils/helpers');
 
-const ROOT = path.resolve(__dirname, '..');
-const CONFIG_PATH = path.join(ROOT, 'config', 'seo-config.json');
-const STATE_PATH = path.join(ROOT, '.seo-state.json');
+// Load config and state
+const configPath = path.join(__dirname, '..', 'config', 'seo-config.json');
+const statePath = path.join(__dirname, '..', '.seo-state.json');
 
-// ---------------------------------------------------------------------------
-// State helpers
-// ---------------------------------------------------------------------------
+const config = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+const state = JSON.parse(fs.readFileSync(statePath, 'utf8'));
 
-function loadState() {
-  return loadJSON(STATE_PATH) || {};
+// Helper: Get random item from array
+function getRandomItem(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-function saveState(state) {
-  writeJSON(STATE_PATH, state);
-}
+// Rotate intro text
+const newIntro = getRandomItem(config.contentOptions.introVariants);
 
-// ---------------------------------------------------------------------------
-// Engagement counter
-// ---------------------------------------------------------------------------
+// Rotate CTA button text
+const newCTA = getRandomItem(config.contentOptions.ctaVariants);
 
-function updateEngagementCounter(state, engagement) {
-  const hourSeed = Math.floor(Date.now() / 3600000); // hours since epoch (UTC)
-  if (state.lastEngagementHour === hourSeed) return state;
+// Rotate lead image
+const newImage = getRandomItem(config.imagePool);
 
-  const span = engagement.incrementMax - engagement.incrementMin + 1;
-  const inc = engagement.incrementMin + (hourSeed % span);
+// Update timestamps
+const now = new Date();
+const dateStr = now.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const isoDate = now.toISOString();
 
-  const current = state.viewCount ?? engagement.baseViews;
-  const next = Math.min(current + inc, engagement.maxViews);
+// Update engagement counters
+const { baseViews, maxViews, incrementMin, incrementMax, baseReviews, maxReviews } = config.engagement;
+const viewIncrement = Math.floor(Math.random() * (incrementMax - incrementMin + 1)) + incrementMin;
+const reviewIncrement = Math.floor(Math.random() * 3);
 
-  const reviews = state.reviewCount ?? engagement.baseReviews;
-  const nextReviews = Math.min(reviews + (next % 2 === 0 ? 1 : 0), engagement.maxReviews);
+state.viewCount = Math.min(state.viewCount + viewIncrement, maxViews);
+state.reviewCount = Math.min(state.reviewCount + reviewIncrement, maxReviews);
+state.lastEngagementHour = Math.floor(Date.now() / (60 * 60 * 1000));
 
-  state.viewCount = next;
-  state.reviewCount = nextReviews;
-  state.lastEngagementHour = hourSeed;
-  return state;
-}
+// Save updated state
+fs.writeFileSync(statePath, JSON.stringify(state, null, 2));
 
-// ---------------------------------------------------------------------------
-// HTML builders
-// ---------------------------------------------------------------------------
+const engagement = `${state.viewCount.toLocaleString()} helpful views &nbsp;|&nbsp; ⭐ ${config.engagement.baseRating} (${state.reviewCount} reviews)`;
 
-function buildIntroHtml(text) {
-  return `      ${text}`;
-}
+// Apply to HTML files
+const pagesDir = path.join(__dirname, '..');
+const htmlFiles = ['index.html', 'pay-without-login.html', 'updates.html'];
 
-function buildLastVerifiedHtml(humanDate, isoDate) {
-  return `      <small>Last Reviewed: <strong><time datetime="${isoDate}">${humanDate}</time></strong> • Last Updated: <strong><time datetime="${isoDate}">${humanDate}</time></strong></small>`;
-}
+htmlFiles.forEach(filename => {
+  const filePath = path.join(pagesDir, filename);
+  if (!fs.existsSync(filePath)) return;
 
-function buildLeadImageHtml(imageUrl) {
-  return `      <img src="${imageUrl}" alt="Progressive Insurance Bill Pay Guide" loading="lazy" width="1080" height="720" style="width:100%;height:auto;border-radius:8px;" />`;
-}
+  let content = fs.readFileSync(filePath, 'utf8');
 
-function buildCtaHtml(ctaText) {
-  return `      <a href="tel:+18886200950" class="cta-btn" style="background:#FFD700;color:#003366;padding:10px 22px;border-radius:24px;font-weight:700;text-decoration:none;font-size:1em;display:inline-block;">${ctaText}</a>`;
-}
+  // Rotate intro
+  content = content.replace(
+    /<!-- DYNAMIC:INTRO -->[
 
-function buildEngagementHtml(state, engagement) {
-  const views = state.viewCount || engagement.baseViews;
-  const reviews = state.reviewCount || engagement.baseReviews;
-  const rating = engagement.baseRating;
-  return `      <span class="engagement-counter" aria-label="Page statistics">${views.toLocaleString()} helpful views &nbsp;|&nbsp; ⭐ ${rating} (${reviews} reviews)</span>`;
-}
-
-// ---------------------------------------------------------------------------
-// File processing
-// ---------------------------------------------------------------------------
-
-function processFile(filePath, config, state) {
-  if (!fs.existsSync(filePath)) {
-    console.warn(`[rotate-content] File not found, skipping: ${filePath}`);
-    return false;
-  }
-
-  let html = fs.readFileSync(filePath, 'utf8');
-  const original = html;
-
-  const markers = config.selectorsOrMarkers;
-  const engagement = config.engagement;
-  const hourMs = Math.floor(Date.now() / 3600000) * 3600000; // start of current UTC hour
-  const humanDate = new Date(hourMs).toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  });
-  const isoDate = new Date(hourMs).toISOString();
-  // --- Intro ---
-  const introList = config.contentOptions.introVariants;
-  const introIdx = rotationIndex(introList.length, 0);
-  const introText = introList[introIdx];
-  const [introStart, introEnd] = markers.intro;
-  html = replaceMarkerContent(html, introStart, introEnd, buildIntroHtml(introText));
-
-  // --- Last verified ---
-  const [lvStart, lvEnd] = markers.lastVerified;
-  html = replaceMarkerContent(html, lvStart, lvEnd, buildLastVerifiedHtml(humanDate, isoDate));
-
-  // --- Lead image ---
-  const imgList = config.imagePool;
-  const imgIdx = rotationIndex(imgList.length, 1);
-  const imgUrl = imgList[imgIdx];
-  const [imgStart, imgEnd] = markers.leadImage;
-  html = replaceMarkerContent(html, imgStart, imgEnd, buildLeadImageHtml(imgUrl));
-
-  // --- CTA ---
-  const ctaList = config.contentOptions.ctaVariants;
-  const ctaIdx = rotationIndex(ctaList.length, 2);
-  const ctaText = ctaList[ctaIdx];
-  const [ctaStart, ctaEnd] = markers.cta;
-  html = replaceMarkerContent(html, ctaStart, ctaEnd, buildCtaHtml(ctaText));
-
-  // --- Engagement counter ---
-  const [engStart, engEnd] = markers.engagementCounter;
-  html = replaceMarkerContent(html, engStart, engEnd, buildEngagementHtml(state, engagement));
-
-  if (html !== original) {
-    fs.writeFileSync(filePath, html, 'utf8');
-    console.log(`[rotate-content] Updated ${path.relative(ROOT, filePath)}`);
-    return true;
-  } else {
-    console.log(`[rotate-content] No changes needed in ${path.relative(ROOT, filePath)}`);
-    return false;
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Main
-// ---------------------------------------------------------------------------
-
-function main() {
-  console.log('[rotate-content] Starting content rotation…');
-
-  const config = loadJSON(CONFIG_PATH);
-  if (!config) {
-    console.error('[rotate-content] Cannot load config — aborting.');
-    process.exit(1);
-  }
-
-  let state = loadState();
-  state = updateEngagementCounter(state, config.engagement);
-
-  const targetPages = ['index.html', 'pay-without-login.html', 'updates.html'].map((p) =>
-    path.join(ROOT, p)
+\S]*?<!-- \/DYNAMIC:INTRO -->/,
+    `<!-- DYNAMIC:INTRO -->\n      ${newIntro}\n<!-- /DYNAMIC:INTRO -->`
   );
 
-  let anyChanged = false;
-  for (const page of targetPages) {
-    if (processFile(page, config, state)) {
-      anyChanged = true;
-    }
-  }
+  // Rotate last verified date
+  content = content.replace(
+    /<!-- DYNAMIC:LAST-VERIFIED -->[
 
-  saveState(state);
-  console.log(`[rotate-content] State saved to .seo-state.json`);
+\S]*?<!-- \/DYNAMIC:LAST-VERIFIED -->/,
+    `<!-- DYNAMIC:LAST-VERIFIED -->\n      <small>Last Reviewed: <strong><time datetime="${isoDate}">${dateStr}</time></strong> • Last Updated: <strong><time datetime="${isoDate}">${dateStr}</time></strong></small>\n<!-- /DYNAMIC:LAST-VERIFIED -->`
+  );
 
-  if (!anyChanged) {
-    console.log('[rotate-content] No HTML files had dynamic markers — nothing rotated.');
-  }
+  // Rotate lead image
+  content = content.replace(
+    /<!-- DYNAMIC:LEAD-IMAGE -->[
 
-  console.log('[rotate-content] Done.');
-}
+\S]*?<!-- \/DYNAMIC:LEAD-IMAGE -->/,
+    `<!-- DYNAMIC:LEAD-IMAGE -->\n      <img src="${newImage}" alt="Progressive Insurance Bill Pay Guide" loading="lazy" width="1080" height="720" style="width:100%;height:auto;border-radius:12px;margin:2em 0;" />\n<!-- /DYNAMIC:LEAD-IMAGE -->`
+  );
 
-main();
+  // Rotate CTA button
+  content = content.replace(
+    /<!-- DYNAMIC:CTA -->[
+
+\S]*?<!-- \/DYNAMIC:CTA -->/,
+    `<!-- DYNAMIC:CTA -->\n      <a href="tel:+18886200950" class="cta-btn" style="background:#FFD700;color:#003366;padding:10px 22px;border-radius:24px;font-weight:700;text-decoration:none;font-size:1em;display:inline-block;margin:1.5em 0;">${newCTA}</a>\n<!-- /DYNAMIC:CTA -->`
+  );
+
+  // Rotate engagement counter
+  content = content.replace(
+    /<!-- DYNAMIC:ENGAGEMENT -->[
+
+\S]*?<!-- \/DYNAMIC:ENGAGEMENT -->/,
+    `<!-- DYNAMIC:ENGAGEMENT -->\n      <span class="engagement-counter" aria-label="Page statistics">${engagement}</span>\n<!-- /DYNAMIC:ENGAGEMENT -->`
+  );
+
+  fs.writeFileSync(filePath, content);
+  console.log(`✅ Rotated content in: ${filename}`);
+});
+
+console.log(`\n📊 Engagement Update:`);
+console.log(`   Views: ${state.viewCount} (+${viewIncrement})`);
+console.log(`   Reviews: ${state.reviewCount} (+${reviewIncrement})`);
+console.log(`   Rating: ${config.engagement.baseRating}⭐`);
