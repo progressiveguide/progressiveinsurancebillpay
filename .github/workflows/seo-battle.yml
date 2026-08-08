@@ -41,13 +41,6 @@ jobs:
           node scripts/fresh-data.js
           echo "fresh_data_done=true" >> $GITHUB_OUTPUT
 
-      - name: Run rotate-content.js
-        id: rotate_content
-        run: |
-          echo "=== Running rotate-content.js ===" 
-          node scripts/rotate-content.js
-          echo "rotate_content_done=true" >> $GITHUB_OUTPUT
-
       - name: Run update-schema.js
         id: update_schema
         run: |
@@ -103,7 +96,6 @@ jobs:
           echo "📊 SEO Update Summary"
           echo "===================="
           echo "✅ Fresh Data:      ${{ steps.fresh_data.outputs.fresh_data_done }}"
-          echo "✅ Rotate Content:  ${{ steps.rotate_content.outputs.rotate_content_done }}"
           echo "✅ Update Schema:   ${{ steps.update_schema.outputs.update_schema_done }}"
           echo "✅ Generate Sitemap: ${{ steps.generate_sitemap.outputs.generate_sitemap_done }}"
           echo "✅ Notify Indexing:  ${{ steps.notify_indexing.outputs.notify_indexing_done }}"
@@ -117,7 +109,6 @@ jobs:
           echo "📊 SEO Update Summary"
           echo "===================="
           echo "✅ Fresh Data:      ${{ steps.fresh_data.outputs.fresh_data_done }}"
-          echo "✅ Rotate Content:  ${{ steps.rotate_content.outputs.rotate_content_done }}"
           echo "✅ Update Schema:   ${{ steps.update_schema.outputs.update_schema_done }}"
           echo "✅ Generate Sitemap: ${{ steps.generate_sitemap.outputs.generate_sitemap_done }}"
           echo "✅ Notify Indexing:  ${{ steps.notify_indexing.outputs.notify_indexing_done }}"
