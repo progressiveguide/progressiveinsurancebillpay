@@ -9,7 +9,7 @@
     "update-schema": "node scripts/update-schema.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "notify-indexing": "node scripts/notify-indexing.js",
-    "seo-update": "npm run fresh-data && npm run rotate-content && npm run update-schema && npm run generate-sitemap && npm run notify-indexing"
+    "seo-update": "npm run fresh-data && npm run update-schema && npm run generate-sitemap && npm run notify-indexing"
   },
   "engines": {
     "node": ">=18"
