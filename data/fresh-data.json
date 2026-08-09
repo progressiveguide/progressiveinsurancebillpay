@@ -1,25 +1,25 @@
 {
-  "timestamp": "2026-08-09T22:17:13.241Z",
+  "timestamp": "2026-08-09T23:18:06.174Z",
   "trendingSearches": [
     {
       "term": "How to pay Progressive insurance online",
-      "volume": 4796
+      "volume": 1713
     },
     {
       "term": "Progressive bill payment without login",
-      "volume": 2561
+      "volume": 3398
     },
     {
       "term": "Pay Progressive bill by phone",
-      "volume": 2829
+      "volume": 3367
     },
     {
       "term": "Progressive AutoPay setup guide",
-      "volume": 4684
+      "volume": 3469
     },
     {
       "term": "Progressive guest payment options",
-      "volume": 2318
+      "volume": 4807
     }
   ],
   "newsHeadlines": [
@@ -36,12 +36,12 @@
     {
       "id": 3,
       "headline": "AutoPay enrollment increases for Progressive policyholders",
-      "date": "2026-08-09"
+      "date": "2026-08-05"
     },
     {
       "id": 4,
       "headline": "Mobile app payment method gains popularity",
-      "date": "2026-08-04"
+      "date": "2026-08-06"
     }
   ]
 }
