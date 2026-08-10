@@ -1,89 +1,74 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Page Not Found | Progressive Insurance Bill Pay Guide</title>
-<meta name="description" content="The page you're looking for could not be found. Return to the Progressive Insurance Bill Pay Guide homepage.">
-<meta name="robots" content="noindex,follow">
-<link rel="canonical" href="https://progressiveguide.github.io/progressiveinsurancebillpay/">
-
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-background:#f5f7fb;
-color:#1f2937;
-display:flex;
-align-items:center;
-justify-content:center;
-min-height:100vh;
-padding:20px
-}
-.container{
-width:100%;
-max-width:620px;
-background:#fff;
-padding:40px 30px;
-border-radius:16px;
-box-shadow:0 10px 30px rgba(0,0,0,.08);
-text-align:center
-}
-h1{
-font-size:72px;
-line-height:1;
-margin-bottom:10px
-}
-h2{
-font-size:30px;
-margin-bottom:16px
-}
-p{
-font-size:16px;
-line-height:1.7;
-color:#4b5563;
-margin-bottom:28px
-}
-a{
-display:inline-block;
-padding:14px 24px;
-background:#0f62fe;
-color:#fff;
-text-decoration:none;
-border-radius:10px;
-font-weight:600
-}
-a:hover{
-opacity:.92
-}
-small{
-display:block;
-margin-top:24px;
-color:#6b7280
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>404 — Page Not Found</title>
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#0b67ff">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#0b67ff;--muted:#94a3b8;--glass:rgba(255,255,255,0.04)}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;color:#e6eefc;background:linear-gradient(180deg,#071032 0%, #071a3a 60%);-webkit-font-smoothing:antialiased}
+    .wrap{min-height:100%;display:flex;align-items:center;justify-content:center;padding:48px}
+    .card{width:100%;max-width:880px;background:linear-gradient(180deg,rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:34px;border:1px solid rgba(255,255,255,0.04);backdrop-filter:blur(6px);box-shadow:0 10px 40px rgba(2,6,23,0.6)}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#0058d4);display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:20px}
+    h1{margin:6px 0 6px 0;font-size:28px;color:white}
+    p.lead{margin:10px 0;color:var(--muted);font-size:15px;line-height:1.6}
+    .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{background:var(--accent);color:white;padding:12px 18px;border-radius:10px;text-decoration:none;font-weight:700;box-shadow:0 8px 28px rgba(11,103,255,0.18)}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:#dbeafe}
+    .meta{margin-top:16px;color:var(--muted);font-size:13px}
+    .fallback{margin-top:20px;background:var(--glass);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02);color:#c7d2fe}
+    .spinner{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,0.9);display:inline-block;margin-right:8px;box-shadow:0 2px 8px rgba(11,103,255,0.18)}
+    @media (max-width:640px){.card{padding:20px}.brand h1{font-size:20px}}
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="card" role="main" aria-labelledby="title">
+      <div class="brand">
+        <div class="logo">PG</div>
+        <div>
+          <h1 id="title">404 — Page Not Found</h1>
+          <div class="meta">We couldn't find that page. Redirecting you to the site homepage now.</div>
+        </div>
+      </div>
 
-<div class="container">
-<h1>404</h1>
+      <p class="lead">You're being taken to the official homepage for this guide. If your browser does not redirect automatically, click the button below.</p>
 
-<h2>Page Not Found</h2>
+      <div class="actions">
+        <a id="homeBtn" class="btn" href="#">Go to Homepage</a>
+        <a class="btn ghost" href="https://progressiveguide.github.io/progressiveinsurancebillpay/sitemap.xml">View sitemap</a>
+      </div>
 
-<p>
-Sorry, the page you requested doesn't exist, may have been moved, or the URL may be incorrect.
-</p>
+      <div class="fallback" id="fallback"> <span class="spinner" aria-hidden="true"></span>Preparing homepage — opening now…</div>
 
-<a href="https://progressiveguide.github.io/progressiveinsurancebillpay/">
-Return to Homepage
-</a>
+    </div>
+  </div>
 
-<small>
-Need help? Start from the homepage to find the latest Progressive Insurance bill payment information.
-</small>
-</div>
+  <script>
+    (function(){
+      // Always redirect to the known site root to avoid loops.
+      // Using a fixed URL prevents infinite redirect if 404.html is served at the root path.
+      var home = 'https://progressiveguide.github.io/progressiveinsurancebillpay/';
 
+      var btn = document.getElementById('homeBtn');
+      btn.setAttribute('href', home);
+
+      // Only redirect if the current URL is not already the home URL (prevents loops)
+      if (location.href.replace(/#.*$/, '').replace(/\?.*$/, '') !== home) {
+        try{
+          window.location.replace(home);
+        }catch(e){
+          // If replace fails, offer manual navigation
+          document.getElementById('fallback').textContent = 'Automatic redirect failed — click "Go to Homepage" to continue.';
+        }
+      } else {
+        document.getElementById('fallback').textContent = 'You are already at the homepage — the requested page was not found.';
+      }
+    })();
+  </script>
 </body>
 </html>
-
