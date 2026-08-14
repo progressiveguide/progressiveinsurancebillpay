@@ -22,7 +22,7 @@
   <!-- CSP note: 'unsafe-inline' is required because this static page contains inline <style> blocks,
        JSON-LD <script> tags, and page-interaction scripts. It still enforces frame-ancestors, base-uri,
        and object-src restrictions. Nonce-based CSP would require a build/server pipeline. -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' https: 'unsafe-inline'; style-src 'self' https: 'unsafe-inline'; img-src 'self' https: data:; font-src 'self' https: data:; connect-src 'self' https:; frame-src https:; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; upgrade-insecure-requests" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://embed.tawk.to https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' https: data:; font-src 'self' https://cdnjs.cloudflare.com data:; connect-src 'self' https://embed.tawk.to https://va.tawk.to https://*.tawk.to; frame-src https://*.tawk.to; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action 'self'; upgrade-insecure-requests" />
 
   <title>Progressive Insurance Bill Pay | One-Time Payment, Pay Online & Guest Payment 1(888)620-0950</title>
 
@@ -78,6 +78,31 @@
       outline: 3px solid var(--brand);
       outline-offset: 2px;
       border-radius: 2px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: auto;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    .skip-link:focus,
+    .skip-link:focus-visible {
+      position: fixed;
+      left: 1em;
+      top: 1em;
+      width: auto;
+      height: auto;
+      padding: 0.6em 1em;
+      background: #ffffff;
+      color: var(--brand);
+      border-radius: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+      z-index: 10000;
     }
 
     /* ===== NAVIGATION ===== */
@@ -418,6 +443,10 @@
       gap: 0.8em;
       user-select: none;
       font-size: clamp(0.95em, 2.5vw, 1.05em);
+      border: 0;
+      background: none;
+      width: 100%;
+      text-align: left;
     }
 
     .collapse-title:hover {
@@ -457,7 +486,6 @@
     }
 
     /* ===== INFO BOXES ===== */
-    .info-box,
     .callbox {
       background: #f0f9ff;
       border-left: 6px solid var(--brand);
@@ -476,24 +504,6 @@
       border-radius: 10px;
       font-size: clamp(0.95em, 2.5vw, 1.05em);
       line-height: 1.8;
-    }
-
-    .trusted {
-      background: #eaffec;
-      border-left: 6px solid var(--cta-dark);
-      padding: clamp(1.5em, 4vw, 2em);
-      margin: clamp(2em, 4vw, 2.5em) 0;
-      border-radius: 10px;
-      font-size: clamp(0.95em, 2.5vw, 1.05em);
-      line-height: 1.8;
-    }
-
-    .tip-box {
-      background: #fffbeb;
-      border-left: 6px solid #f59e0b;
-      padding: clamp(1.5em, 4vw, 2em);
-      margin: clamp(2em, 4vw, 2.5em) 0;
-      border-radius: 10px;
     }
 
     /* ===== BUTTONS ===== */
@@ -574,6 +584,33 @@
       margin-top: 1.5em;
       font-size: clamp(0.85em, 2vw, 0.95em);
       line-height: 1.8;
+    }
+
+    .page-meta {
+      margin-top: 0.8em;
+      font-size: clamp(0.85em, 2vw, 0.95em);
+      opacity: 0.95;
+    }
+
+    .reviewed-block {
+      background: #f9fafb;
+      border: 1px solid var(--border-light);
+      border-radius: 8px;
+      padding: 1em 1.1em;
+      margin: 1em 0 1.5em;
+      color: var(--text-light);
+      font-size: clamp(0.9em, 2vw, 0.98em);
+    }
+
+    .editorial-review-policy,
+    .helpful-resources {
+      margin-top: 1.5em;
+      padding-top: 0.2em;
+    }
+
+    .helpful-resources ul {
+      margin-left: 1.4em;
+      line-height: 1.9;
     }
 
     /* ===== RESPONSIVE ===== */
@@ -685,7 +722,6 @@
     }
     /* HERO H1 FIX */
 .hero h1,
-.hero-title,
 header h1 {
     color: #ffffff !important;
     opacity: 1 !important;
@@ -803,6 +839,7 @@ header h1 {
 </head>
 
 <body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
 
 <nav>
   <div class="container">
@@ -843,11 +880,11 @@ header h1 {
   <a href="tel:+18886200950" style="color:#fff;font-weight:700;">1(888)620-0950</a> Available 24/7 for Progressive billing help, making a payment, paying without signing in, one time payment, urgent payments, and other common billing needs.</p>
  </div>
   <div class="page-meta">
-  <small>Last Reviewed: <strong>August 11, 2026</strong> • Last Updated: <strong>August 11, 2026</strong></small>
+  <small>Last Reviewed: <strong><time datetime="2026-08-11">August 11, 2026</time></strong> • Last Updated: <strong><time datetime="2026-08-11">August 11, 2026</time></strong></small>
   </div>
 </header>
 
-<main class="container">
+<main class="container" id="main-content">
 
   <!-- Quick Pay Section -->
   <section class="card" id="quick-pay">
@@ -1432,7 +1469,7 @@ header h1 {
   <!-- Updated Section -->
   <section class="card" id="last-updated">
     <h2><i class="fa-solid fa-calendar" aria-hidden="true"></i> Last Updated & Disclaimer</h2>
-    <p><strong>Last Updated: <a href="updates.html">August 11, 2026</a></strong></p>
+    <p><strong>Last Updated: <a href="updates.html"><time datetime="2026-08-11">August 11, 2026</time></a></strong></p>
     <p>This comprehensive Progressive insurance bill pay guide has been reviewed and updated for current payment methods, security features, and 2026 best practices.</p>
 
     <section class="editorial-review-policy">
@@ -1483,11 +1520,23 @@ header h1 {
 
 <script>
   // Collapse/Accordion Functionality
-  document.querySelectorAll('.collapse-title').forEach(function(title) {
+  document.querySelectorAll('.collapse-item').forEach(function(item, index) {
+    const title = item.querySelector('.collapse-title');
+    const content = item.querySelector('.collapse-content');
+    if (!title || !content) return;
+
+    const contentId = content.id || `collapse-content-${index + 1}`;
+    content.id = contentId;
+
+    title.setAttribute('role', 'button');
+    title.setAttribute('tabindex', '0');
+    title.setAttribute('aria-controls', contentId);
+    title.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
+
     title.addEventListener('click', function(e) {
       e.preventDefault();
-      const parent = this.parentElement;
-      parent.classList.toggle('open');
+      item.classList.toggle('open');
+      this.setAttribute('aria-expanded', item.classList.contains('open') ? 'true' : 'false');
     });
 
     title.addEventListener('keydown', function(e) {
@@ -1499,7 +1548,7 @@ header h1 {
   });
 
   // Navigation active state
-  const sections = document.querySelectorAll('section[id]');
+  const sections = document.querySelectorAll('header[id], section[id]');
   const navLinks = document.querySelectorAll('nav a');
 
   window.addEventListener('scroll', () => {
@@ -1535,15 +1584,23 @@ header h1 {
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-(function() {
+function loadTawkChat() {
   var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
   s1.async = true;
   s1.src = 'https://embed.tawk.to/694ee318a5f5761981f1731e/default';
   s1.charset = 'UTF-8';
-  s1.setAttribute('crossorigin', '*');
+  s1.setAttribute('crossorigin', 'anonymous');
   s1.setAttribute('referrerpolicy', 'no-referrer');
   s0.parentNode.insertBefore(s1, s0);
-})();
+}
+
+if ('requestIdleCallback' in window) {
+  window.addEventListener('load', function() {
+    requestIdleCallback(loadTawkChat, { timeout: 2000 });
+  });
+} else {
+  window.addEventListener('load', loadTawkChat);
+}
 </script>
 <!--End of Tawk.to Script-->
 
