@@ -43,7 +43,7 @@
         <a class="btn ghost" href="sitemap.xml">View sitemap</a>
       </div>
 
-      <div class="fallback" id="fallback"> <span class="spinner" aria-hidden="true"></span>Preparing homepage — opening now…</div>
+      <div class="fallback" id="fallback"> <span class="spinner" aria-hidden="true"></span>Preparing homepage — redirecting in 5 seconds…</div>
 
     </div>
   </div>
@@ -60,7 +60,9 @@
       // Only redirect if the current URL is not already the home URL (prevents loops)
       if (location.href.replace(/#.*$/, '').replace(/\?.*$/, '') !== home) {
         try{
-          window.location.replace(home);
+          window.setTimeout(function(){
+            window.location.replace(home);
+          }, 5000);
         }catch(e){
           // If replace fails, offer manual navigation
           document.getElementById('fallback').textContent = 'Automatic redirect failed — click "Go to Homepage" to continue.';
