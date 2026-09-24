@@ -24,4 +24,4 @@
 
 ---
 
-Copy, paste, and repeat these sections in your `index.html` to expand your help page for unbeatable SEO depth.
+Copy, paste, and repeat these sections across your main guide pages (for example `index.html` and related payment guide pages) to expand content depth and coverage.
