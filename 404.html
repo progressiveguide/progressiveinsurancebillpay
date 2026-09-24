@@ -43,7 +43,7 @@
         <a class="btn ghost" href="sitemap.xml">View sitemap</a>
       </div>
 
-      <div class="fallback" id="fallback"> <span class="spinner" aria-hidden="true"></span>Preparing homepage — redirecting in 5 seconds…</div>
+      <div class="fallback" id="fallback"> <span class="spinner" aria-hidden="true"></span>Preparing homepage navigation options…</div>
 
     </div>
   </div>
@@ -57,16 +57,9 @@
       var btn = document.getElementById('homeBtn');
       btn.setAttribute('href', home);
 
-      // Only redirect if the current URL is not already the home URL (prevents loops)
+      // Provide manual navigation controls without forcing timed redirect
       if (location.href.replace(/#.*$/, '').replace(/\?.*$/, '') !== home) {
-        try{
-          window.setTimeout(function(){
-            window.location.replace(home);
-          }, 5000);
-        }catch(e){
-          // If replace fails, offer manual navigation
-          document.getElementById('fallback').textContent = 'Automatic redirect failed — click "Go to Homepage" to continue.';
-        }
+        document.getElementById('fallback').textContent = 'Click "Go to Homepage" when you are ready.';
       } else {
         document.getElementById('fallback').textContent = 'You are already at the homepage — the requested page was not found.';
       }
